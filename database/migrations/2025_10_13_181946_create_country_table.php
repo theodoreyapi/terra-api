@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('country', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_country')->primary();
+            $table->string('name')->unique();
+            $table->string('image')->unique();
+            $table->string('status', 20)->default('active')->comment('active, inactive');
             $table->timestamps();
         });
     }
