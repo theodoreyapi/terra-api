@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
        Schema::create('champs_formulaire', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('formulaire_id');
+            $table->uuid('id_champ_formulaire')->primary();
+           
             $table->string('type_champ', 50); // 'nom', 'prenoms', 'date_naissance', etc.
             $table->string('label', 255);
             $table->boolean('obligatoire')->default(false);
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->json('options')->nullable(); // Configurations spécifiques
             $table->timestamps();
 
-            $table->foreign('formulaire_id')->references('id')->on('formulaires')->onDelete('cascade');
+            $table->foreignUuid('formulaire_id')->references('id_formulaire')->on('formulaires')->onDelete('cascade');
             $table->index('formulaire_id');
         });
     }

@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
        Schema::create('formulaires', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('mission_id');
+            $table->uuid('id_formulaire')->primary();
+           
             $table->string('nom', 255);
             $table->integer('ordre')->default(0);
             $table->timestamps();
 
-            $table->foreign('mission_id')->references('id')->on('missions')->onDelete('cascade');
+            $table->foreignUuid('mission_id')->references('id_mission')->on('missions')->onDelete('cascade');
         });
     }
 

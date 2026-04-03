@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('agents', function (Blueprint $table) {
-            $table->id('id_agent')->primary();
+            $table->uuid('id_agent')->primary();
             $table->string('genre_agent');
             $table->string('name_agent');
             $table->string('lastname_agent');
@@ -27,16 +27,17 @@ return new class extends Migration
             $table->string('experience_mission_agent')->comment('oui, non');
             $table->string('permis_agent')->comment('oui, non');
             $table->string('password_agent');
-            $table->unsignedBigInteger('diplome_id');
-            $table->foreign('diplome_id')->references('id_diplome')->on('diplomes');
-            $table->unsignedBigInteger('etude_id');
-            $table->foreign('etude_id')->references('id_etude')->on('etudes');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id_city')->on('city');
-            $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id_country')->on('country');
-            $table->unsignedBigInteger('commune_id');
-            $table->foreign('commune_id')->references('id_commune')->on('commune');
+
+            $table->integer('otp_agent')->nullable();
+            $table->string('token_agent')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+
+            $table->foreignUuid('diplome_id')->references('id_diplome')->on('diplomes');
+            $table->foreignUuid('etude_id')->references('id_etude')->on('etudes');
+            $table->foreignUuid('city_id')->references('id_city')->on('city');
+            $table->foreignUuid('country_id')->references('id_country')->on('country');
+            $table->foreignUuid('commune_id')->references('id_commune')->on('commune');
+
             $table->timestamps();
         });
     }

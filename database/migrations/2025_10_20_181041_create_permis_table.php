@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('permis', function (Blueprint $table) {
-            $table->id('id_permis')->primary();
+            $table->uuid('id_permis')->primary();
             $table->string('recto_permis');
             $table->string('verso_permis');
-            $table->unsignedBigInteger('agent_id');
-            $table->foreign('agent_id')->references('id_agent')->on('agents');
+           
+            $table->foreignUuid('agent_id')->references('id_agent')->on('agents');
             $table->timestamps();
         });
     }

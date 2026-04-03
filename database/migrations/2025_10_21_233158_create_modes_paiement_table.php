@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-           Schema::create('modes_paiement', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('mission_id');
+        Schema::create('modes_paiement', function (Blueprint $table) {
+            $table->uuid('id_mode_paiemnt')->primary();
+
             $table->string('provider', 50); // 'wave', 'orange', 'moov', 'mtn', 'visa'
             $table->boolean('actif')->default(true);
             $table->timestamps();
 
-            $table->foreign('mission_id')->references('id')->on('missions')->onDelete('cascade');
+            $table->foreignUuid('mission_id')->references('id_mission')->on('missions')->onDelete('cascade');
         });
     }
 

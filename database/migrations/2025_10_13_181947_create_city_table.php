@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('city', function (Blueprint $table) {
-            $table->id('id_city')->primary();
+            $table->uuid('id_city')->primary();
             $table->string('name_city')->unique();
             $table->string('status', 20)->default('active')->comment('active, inactive');
-            $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id_country')->on('country')->onDelete('cascade');
+        
+            $table->foreignUuid('country_id')->references('id_country')->on('country')->onDelete('cascade');
             $table->timestamps();
         });
     }

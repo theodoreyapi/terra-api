@@ -11,20 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('reponses', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->uuid('mission_id');
-            $table->uuid('formulaire_id')->nullable();
+        Schema::create('reponses', function (Blueprint $table) {
+            $table->uuid('id_reponse')->primary();
+
+
             $table->json('donnees'); // Stockage flexible des réponses
-            $table->point('localisation')->nullable(); // Coordonnées GPS
-            $table->uuid('agent_id')->nullable();
+            $table->string('longitude')->nullable(); // Coordonnées GPS
+            $table->string('latitude')->nullable(); // Coordonnées GPS
+
             $table->string('statut', 20)->default('soumis'); // 'soumis', 'valide', 'rejete'
             $table->timestamp('submitted_at')->useCurrent();
             $table->timestamps();
 
-            $table->foreign('mission_id')->references('id')->on('missions')->onDelete('cascade');
-            $table->foreign('formulaire_id')->references('id')->on('formulaires')->onDelete('set null');
-            $table->foreign('agent_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreignUuid('mission_id')->references('id_mission')->on('missions')->onDelete('cascade');
+            $table->foreignUuid('formulaire_id')->nullable()->references('id_formulaire')->on('formulaires')->onDelete('cascade');
+            $table->foreignUuid('agent_id')->nullable()->references('id_agent')->on('agents')->onDelete('cascade');
 
             $table->index('mission_id');
             $table->index('agent_id');

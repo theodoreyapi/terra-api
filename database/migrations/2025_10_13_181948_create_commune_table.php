@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('commune', function (Blueprint $table) {
-            $table->id('id_commune')->primary();
+            $table->uuid('id_commune')->primary();
             $table->string('name_commune')->unique();
             $table->string('status', 20)->default('active')->comment('active, inactive');
-            $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id_city')->on('city')->onDelete('cascade');
-            $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('id_country')->on('country')->onDelete('cascade');
+
+            $table->foreignUuid('city_id')->references('id_city')->on('city')->onDelete('cascade');
+          
+            $table->foreignUuid('country_id')->references('id_country')->on('country')->onDelete('cascade');
             $table->timestamps();
         });
     }

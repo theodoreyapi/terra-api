@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('langue_agent', function (Blueprint $table) {
-            $table->id('id_langue_agent')->primary();
-            $table->unsignedBigInteger('langue_id');
-            $table->foreign('langue_id')->references('id_langue')->on('langues');
-            $table->unsignedBigInteger('agent_id');
-            $table->foreign('agent_id')->references('id_agent')->on('agents');
+            $table->uuid('id_langue_agent')->primary();
+           
+            $table->foreignUuid('langue_id')->references('id_langue')->on('langues');
+
+            $table->foreignUuid('agent_id')->references('id_agent')->on('agents');
             $table->timestamps();
         });
     }

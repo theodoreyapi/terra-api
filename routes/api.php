@@ -1,15 +1,26 @@
 <?php
 
-use App\Http\Controllers\Api\BusinessController;
-use App\Http\Controllers\Api\ChampFormulaireController;
-use App\Http\Controllers\Api\FormulaireController;
-use App\Http\Controllers\Api\MissionController;
-use App\Http\Controllers\Api\ModePaiementController;
-use App\Http\Controllers\Api\ParametreChampController;
-use App\Http\Controllers\Api\PlanController;
-use App\Http\Controllers\Api\ReponseController;
+use App\Http\Controllers\Api\AgentAuthController;
+use App\Http\Controllers\Api\AgentDiplomeController;
+use App\Http\Controllers\Api\AgentInvitationController;
+use App\Http\Controllers\Api\AgentLangueController;
+use App\Http\Controllers\Api\AgentMissionController;
+use App\Http\Controllers\Api\AgentPermisController;
+use App\Http\Controllers\Api\AgentPieceController;
+use App\Http\Controllers\Api\AgentProfileController;
+use App\Http\Controllers\Api\AgentWalletController;
+use App\Http\Controllers\Api\BusinessAuthController;
+use App\Http\Controllers\Api\BusinessChampController;
+use App\Http\Controllers\Api\BusinessFormulaireController;
+use App\Http\Controllers\Api\BusinessMissionAgentController;
+use App\Http\Controllers\Api\BusinessMissionController;
+use App\Http\Controllers\Api\BusinessModePaiementController;
+use App\Http\Controllers\Api\BusinessPaiementController;
+use App\Http\Controllers\Api\BusinessPlanController;
+use App\Http\Controllers\Api\BusinessProfileController;
+use App\Http\Controllers\Api\BusinessReponseController;
+use App\Http\Controllers\Api\ReferentielController;
 use App\Http\Controllers\Api\StatistiqueController;
-use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,134 +29,186 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-// Routes publiques (sans authentification)
-Route::prefix('v1')->group(function () {
+// routes/api.php
+Route::prefix('internal/terra/v1')->group(function () {
+    // ═══════════════════════════════════════════════
+    // RÉFÉRENTIELS PUBLICS (pas de token requis)
+    // ═══════════════════════════════════════════════
+    Route::prefix('referentiels')->group(function () {
+        Route::get('pays',                   [ReferentielController::class, 'pays']);
+        Route::get('pays/{id}/villes',       [ReferentielController::class, 'villes']);
+        Route::get('villes/{id}/communes',   [ReferentielController::class, 'communes']);
+        Route::get('etudes',                 [ReferentielController::class, 'etudes']);
+        Route::get('diplomes',               [ReferentielController::class, 'diplomes']);
+        Route::get('langues',                [ReferentielController::class, 'langues']);
+        Route::get('secteurs',               [ReferentielController::class, 'secteurs']);
+    });
 
-    // Authentification agent
-    Route::post('/login', [UserController::class, 'login']);
-    Route::post('/register', [UserController::class, 'register']);
+    // ═══════════════════════════════════════════════
+    // AGENT ROUTES
+    // ═══════════════════════════════════════════════
+    Route::prefix('agent')->group(function () {
 
-    // Authentification business
-    Route::post('/business/login', [BusinessController::class, 'login']);
-    Route::post('/business/register', [BusinessController::class, 'register']);
+        // Auth publique (pas de token)
+        Route::post('register',        [AgentAuthController::class, 'register']);
+        Route::post('login',           [AgentAuthController::class, 'login']);
+        Route::post('send-otp',        [AgentAuthController::class, 'sendOtp']);
+        Route::post('verify-otp',      [AgentAuthController::class, 'verifyOtp']);
+        Route::post('forgot-password', [AgentAuthController::class, 'forgotPassword']);
+        Route::post('reset-password',  [AgentAuthController::class, 'resetPassword']);
 
-    // Routes protégées
-    Route::middleware('auth:sanctum')->group(function () {
+        // Routes protégées (token requis)
+        // Route::middleware('auth.agent')->group(function () {
 
-        // ============ USERS ============
-        Route::prefix('users')->group(function () {
-            Route::get('/', [UserController::class, 'index']);
-            Route::get('/{id}', [UserController::class, 'show']);
-            Route::post('/', [UserController::class, 'store']);
-            Route::put('/{id}', [UserController::class, 'update']);
-            Route::delete('/{id}', [UserController::class, 'destroy']);
-            Route::get('/{id}/missions', [UserController::class, 'missions']);
-            Route::get('/{id}/reponses', [UserController::class, 'reponses']);
-        });
+        // ── Auth / Profil ──────────────────────────
+        Route::post('logout',        [AgentAuthController::class, 'logout']);
+        Route::get('me',             [AgentAuthController::class, 'me']);
+        Route::put('me',             [AgentAuthController::class, 'update']);
 
-        // ============ BUSINESS ============
-        Route::prefix('business')->group(function () {
-            Route::get('/', [BusinessController::class, 'index']);
-            Route::get('/{id}', [BusinessController::class, 'show']);
-            Route::post('/', [BusinessController::class, 'store']);
-            Route::put('/{id}', [BusinessController::class, 'update']);
-            Route::delete('/{id}', [BusinessController::class, 'destroy']);
-            Route::get('/{id}/missions', [BusinessController::class, 'missions']);
-            Route::get('/{id}/reponses', [BusinessController::class, 'reponses']);
-        });
+        // ── Profil complet ──────────────────────────
+        Route::get('profile',        [AgentProfileController::class, 'show']);
+        Route::put('profile',        [AgentProfileController::class, 'update']);
+        Route::post('profile/image', [AgentProfileController::class, 'uploadImage']);
 
-        // ============ MISSIONS ============
-        Route::prefix('missions')->group(function () {
-            Route::get('/', [MissionController::class, 'index']); // Liste toutes les missions
-            Route::post('/', [MissionController::class, 'store']); // Créer une mission
-            Route::get('/{id}', [MissionController::class, 'show']); // Détails d'une mission
-            Route::put('/{id}', [MissionController::class, 'update']); // Modifier une mission
-            Route::delete('/{id}', [MissionController::class, 'destroy']); // Supprimer une mission
-            Route::patch('/{id}/status', [MissionController::class, 'updateStatus']); // Changer le statut
-            Route::get('/{id}/duplicate', [MissionController::class, 'duplicate']); // Dupliquer une mission
-            Route::get('/{id}/export', [MissionController::class, 'export']); // Exporter les données
-            Route::get('/type/{type}', [MissionController::class, 'byType']); // Filtrer par type
-            Route::get('/statut/{statut}', [MissionController::class, 'byStatus']); // Filtrer par statut
-        });
+        // ── Pièces d'identité ──────────────────────
+        Route::get('pieces',         [AgentPieceController::class, 'index']);
+        Route::post('pieces',        [AgentPieceController::class, 'store']);
+        Route::put('pieces/{id}',    [AgentPieceController::class, 'update']);
 
-        // ============ FORMULAIRES ============
-        Route::prefix('formulaires')->group(function () {
-            Route::get('/', [FormulaireController::class, 'index']);
-            Route::post('/', [FormulaireController::class, 'store']);
-            Route::get('/{id}', [FormulaireController::class, 'show']);
-            Route::put('/{id}', [FormulaireController::class, 'update']);
-            Route::delete('/{id}', [FormulaireController::class, 'destroy']);
-            Route::get('/mission/{missionId}', [FormulaireController::class, 'byMission']);
-            Route::post('/{id}/duplicate', [FormulaireController::class, 'duplicate']);
-            Route::patch('/{id}/reorder', [FormulaireController::class, 'reorder']);
-        });
+        // ── Permis de conduire ─────────────────────
+        Route::get('permis',         [AgentPermisController::class, 'index']);
+        Route::post('permis',        [AgentPermisController::class, 'store']);
+        Route::put('permis/{id}',    [AgentPermisController::class, 'update']);
 
-        // ============ CHAMPS FORMULAIRE ============
-        Route::prefix('champs')->group(function () {
-            Route::get('/', [ChampFormulaireController::class, 'index']);
-            Route::post('/', [ChampFormulaireController::class, 'store']);
-            Route::get('/{id}', [ChampFormulaireController::class, 'show']);
-            Route::put('/{id}', [ChampFormulaireController::class, 'update']);
-            Route::delete('/{id}', [ChampFormulaireController::class, 'destroy']);
-            Route::get('/formulaire/{formulaireId}', [ChampFormulaireController::class, 'byFormulaire']);
-            Route::patch('/{id}/reorder', [ChampFormulaireController::class, 'reorder']);
-            Route::post('/bulk', [ChampFormulaireController::class, 'bulkStore']); // Créer plusieurs champs
-        });
+        // ── Diplômes ───────────────────────────────
+        Route::get('diplomes',       [AgentDiplomeController::class, 'index']);
+        Route::post('diplomes',      [AgentDiplomeController::class, 'store']);
+        Route::put('diplomes/{id}',  [AgentDiplomeController::class, 'update']);
 
-        // ============ PARAMETRES CHAMPS ============
-        Route::prefix('parametres-champs')->group(function () {
-            Route::get('/', [ParametreChampController::class, 'index']);
-            Route::post('/', [ParametreChampController::class, 'store']);
-            Route::get('/{id}', [ParametreChampController::class, 'show']);
-            Route::put('/{id}', [ParametreChampController::class, 'update']);
-            Route::delete('/{id}', [ParametreChampController::class, 'destroy']);
-            Route::get('/champ/{champId}', [ParametreChampController::class, 'byChamp']);
-        });
+        // ── Langues ────────────────────────────────
+        Route::get('langues',            [AgentLangueController::class, 'index']);
+        Route::post('langues',           [AgentLangueController::class, 'store']);
+        Route::delete('langues/{id}',    [AgentLangueController::class, 'destroy']);
 
-        // ============ PLANS ============
-        Route::prefix('plans')->group(function () {
-            Route::get('/', [PlanController::class, 'index']);
-            Route::post('/', [PlanController::class, 'store']);
-            Route::get('/{id}', [PlanController::class, 'show']);
-            Route::put('/{id}', [PlanController::class, 'update']);
-            Route::delete('/{id}', [PlanController::class, 'destroy']);
-            Route::get('/mission/{missionId}', [PlanController::class, 'byMission']);
-        });
+        // ── Missions ───────────────────────────────
+        // IMPORTANT: mes-missions AVANT {id} pour éviter conflit de route
+        Route::get('missions/mes-missions',              [AgentMissionController::class, 'mesMissions']);
+        Route::get('missions',                           [AgentMissionController::class, 'index']);
+        Route::get('missions/{id}',                      [AgentMissionController::class, 'show']);
+        Route::post('missions/{id}/rejoindre',           [AgentMissionController::class, 'rejoindre']);
+        Route::get('missions/{id}/formulaire',           [AgentMissionController::class, 'formulaire']);
+        Route::post('missions/{id}/formulaire/soumettre', [AgentMissionController::class, 'soumettre']);
+        Route::get('missions/{id}/mes-reponses',         [AgentMissionController::class, 'mesReponses']);
+        Route::get('missions/{id}/statistiques',         [AgentMissionController::class, 'statistiques']);
 
-        // ============ MODES DE PAIEMENT ============
-        Route::prefix('modes-paiement')->group(function () {
-            Route::get('/', [ModePaiementController::class, 'index']);
-            Route::post('/', [ModePaiementController::class, 'store']);
-            Route::get('/{id}', [ModePaiementController::class, 'show']);
-            Route::put('/{id}', [ModePaiementController::class, 'update']);
-            Route::delete('/{id}', [ModePaiementController::class, 'destroy']);
-            Route::get('/mission/{missionId}', [ModePaiementController::class, 'byMission']);
-            Route::patch('/{id}/toggle', [ModePaiementController::class, 'toggleActive']);
-        });
+        // ── Invitations ────────────────────────────
+        Route::get('invitations',             [AgentInvitationController::class, 'index']);
+        Route::get('invitations/{id}',        [AgentInvitationController::class, 'show']);
+        Route::post('invitations/{id}/accepter', [AgentInvitationController::class, 'accepter']);
+        Route::post('invitations/{id}/refuser',  [AgentInvitationController::class, 'refuser']);
 
-        // ============ REPONSES ============
-        Route::prefix('reponses')->group(function () {
-            Route::get('/', [ReponseController::class, 'index']);
-            Route::post('/', [ReponseController::class, 'store']);
-            Route::get('/{id}', [ReponseController::class, 'show']);
-            Route::put('/{id}', [ReponseController::class, 'update']);
-            Route::delete('/{id}', [ReponseController::class, 'destroy']);
-            Route::patch('/{id}/status', [ReponseController::class, 'updateStatus']);
-            Route::get('/mission/{missionId}', [ReponseController::class, 'byMission']);
-            Route::get('/agent/{agentId}', [ReponseController::class, 'byAgent']);
-            Route::get('/mission/{missionId}/export', [ReponseController::class, 'export']);
-            Route::post('/bulk', [ReponseController::class, 'bulkStore']); // Soumission multiple
-            Route::get('/mission/{missionId}/stats', [ReponseController::class, 'statistics']);
-        });
+        // ── Wallet & Finance ───────────────────────
+        Route::get('wallet',                   [AgentWalletController::class, 'index']);
+        Route::get('wallet/transactions',      [AgentWalletController::class, 'transactions']);
+        Route::get('wallet/transactions/{id}', [AgentWalletController::class, 'transaction']);
+        Route::post('wallet/retrait',          [AgentWalletController::class, 'retrait']);
+        Route::get('wallet/retraits',          [AgentWalletController::class, 'retraits']);
+        Route::get('wallet/retraits/{id}',     [AgentWalletController::class, 'showRetrait']);
+        Route::delete('wallet/retraits/{id}',  [AgentWalletController::class, 'annulerRetrait']);
+        // });
+    });
 
-        // ============ STATISTIQUES & RAPPORTS ============
-        Route::prefix('statistiques')->group(function () {
-            Route::get('/dashboard', [StatistiqueController::class, 'dashboard']);
-            Route::get('/mission/{missionId}', [StatistiqueController::class, 'missionStats']);
-            Route::get('/agent/{agentId}', [StatistiqueController::class, 'agentStats']);
-            Route::get('/performance', [StatistiqueController::class, 'performance']);
-            Route::get('/geolocalisation', [StatistiqueController::class, 'geolocalisation']);
-            Route::get('/tendances', [StatistiqueController::class, 'tendances']);
-        });
+    // ═══════════════════════════════════════════════
+    // BUSINESS ROUTES
+    // ═══════════════════════════════════════════════
+    Route::prefix('business')->group(function () {
+
+        // Auth publique
+        Route::post('register',        [BusinessAuthController::class, 'register']);
+        Route::post('login',           [BusinessAuthController::class, 'login']);
+        Route::post('send-otp',        [BusinessAuthController::class, 'sendOtp']);
+        Route::post('verify-otp',      [BusinessAuthController::class, 'verifyOtp']);
+        Route::post('forgot-password', [BusinessAuthController::class, 'forgotPassword']);
+        Route::post('reset-password',  [BusinessAuthController::class, 'resetPassword']);
+
+        // Routes protégées
+        // Route::middleware('auth.business')->group(function () {
+
+        // ── Auth / Profil ──────────────────────────
+        Route::post('logout',           [BusinessAuthController::class, 'logout']);
+        Route::get('me',                [BusinessAuthController::class, 'me']);
+        Route::put('me',                [BusinessAuthController::class, 'update']);
+        Route::get('profile',           [BusinessProfileController::class, 'show']);
+        Route::put('profile',           [BusinessProfileController::class, 'update']);
+        Route::post('profile/logo',     [BusinessProfileController::class, 'uploadLogo']);
+
+        // ── Missions ───────────────────────────────
+        Route::get('missions',              [BusinessMissionController::class, 'index']);
+        Route::post('missions',             [BusinessMissionController::class, 'store']);
+        Route::get('missions/{id}',         [BusinessMissionController::class, 'show']);
+        Route::put('missions/{id}',         [BusinessMissionController::class, 'update']);
+        Route::delete('missions/{id}',      [BusinessMissionController::class, 'destroy']);
+        Route::post('missions/{id}/publier', [BusinessMissionController::class, 'publier']);
+        Route::post('missions/{id}/terminer', [BusinessMissionController::class, 'terminer']);
+        Route::get('missions/{id}/statistiques', [BusinessMissionController::class, 'statistiques']);
+
+        // ── Formulaires ────────────────────────────
+        Route::get('missions/{id}/formulaires',           [BusinessFormulaireController::class, 'index']);
+        Route::post('missions/{id}/formulaires',          [BusinessFormulaireController::class, 'store']);
+        Route::put('missions/{id}/formulaires/{fid}',     [BusinessFormulaireController::class, 'update']);
+        Route::delete('missions/{id}/formulaires/{fid}',  [BusinessFormulaireController::class, 'destroy']);
+
+        // ── Champs de formulaire ───────────────────
+        Route::post('formulaires/{fid}/champs',           [BusinessChampController::class, 'store']);
+        Route::put('formulaires/{fid}/champs/{cid}',      [BusinessChampController::class, 'update']);
+        Route::delete('formulaires/{fid}/champs/{cid}',   [BusinessChampController::class, 'destroy']);
+        Route::put('formulaires/{fid}/champs/ordre',      [BusinessChampController::class, 'reordonner']);
+        Route::put('champs/{cid}/parametres',             [BusinessChampController::class, 'parametres']);
+
+        // ── Agents de la mission ───────────────────
+        // IMPORTANT: inviter AVANT {aid} pour éviter conflit de route
+        Route::get('missions/{id}/agents',                     [BusinessMissionAgentController::class, 'index']);
+        Route::post('missions/{id}/agents/inviter',            [BusinessMissionAgentController::class, 'inviter']);
+        Route::get('missions/{id}/agents/{aid}',               [BusinessMissionAgentController::class, 'show']);
+        Route::delete('missions/{id}/agents/{aid}',            [BusinessMissionAgentController::class, 'retirer']);
+        Route::put('missions/{id}/agents/{aid}/objectif',      [BusinessMissionAgentController::class, 'objectif']);
+        Route::get('missions/{id}/agents/{aid}/statistiques',  [BusinessMissionAgentController::class, 'statistiques']);
+        Route::get('missions/{id}/agents/{aid}/reponses',      [BusinessMissionAgentController::class, 'reponses']);
+
+        // ── Réponses formulaires ───────────────────
+        // IMPORTANT: export AVANT {rid} pour éviter conflit
+        Route::get('missions/{id}/reponses/export',            [BusinessReponseController::class, 'export']);
+        Route::get('missions/{id}/reponses',                   [BusinessReponseController::class, 'index']);
+        Route::get('missions/{id}/reponses/{rid}',             [BusinessReponseController::class, 'show']);
+        Route::put('missions/{id}/reponses/{rid}/valider',     [BusinessReponseController::class, 'valider']);
+        Route::put('missions/{id}/reponses/{rid}/rejeter',     [BusinessReponseController::class, 'rejeter']);
+
+        // ── Plans ──────────────────────────────────
+        Route::get('missions/{id}/plans',           [BusinessPlanController::class, 'index']);
+        Route::post('missions/{id}/plans',          [BusinessPlanController::class, 'store']);
+        Route::put('missions/{id}/plans/{pid}',     [BusinessPlanController::class, 'update']);
+        Route::delete('missions/{id}/plans/{pid}',  [BusinessPlanController::class, 'destroy']);
+
+        // ── Modes de paiement ──────────────────────
+        Route::get('missions/{id}/modes-paiement',          [BusinessModePaiementController::class, 'index']);
+        Route::post('missions/{id}/modes-paiement',         [BusinessModePaiementController::class, 'store']);
+        Route::delete('missions/{id}/modes-paiement/{mid}', [BusinessModePaiementController::class, 'destroy']);
+
+        // ── Paiements agents ───────────────────────
+        // IMPORTANT: payer-tous AVANT {aid}/payer
+        Route::post('missions/{id}/agents/payer-tous',     [BusinessPaiementController::class, 'payerTous']);
+        Route::post('missions/{id}/agents/{aid}/payer',    [BusinessPaiementController::class, 'payerAgent']);
+        Route::get('missions/{id}/paiements',              [BusinessPaiementController::class, 'historique']);
+        // });
+    });
+
+    // ============ STATISTIQUES & RAPPORTS ============
+    Route::prefix('statistiques')->group(function () {
+        Route::get('/dashboard', [StatistiqueController::class, 'dashboard']);
+        Route::get('/mission/{missionId}', [StatistiqueController::class, 'missionStats']);
+        Route::get('/agent/{agentId}', [StatistiqueController::class, 'agentStats']);
+        Route::get('/performance', [StatistiqueController::class, 'performance']);
+        Route::get('/geolocalisation', [StatistiqueController::class, 'geolocalisation']);
+        Route::get('/tendances', [StatistiqueController::class, 'tendances']);
     });
 });

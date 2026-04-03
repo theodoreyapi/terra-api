@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('langues', function (Blueprint $table) {
-            $table->id('id_langue')->primary();
+            $table->uuid('id_langue')->primary();
             $table->string('name_langue')->unique();
             $table->string('status', 20)->default('active')->comment('active, inactive');
             $table->timestamps();
