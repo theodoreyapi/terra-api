@@ -10,6 +10,42 @@ use Illuminate\Support\Facades\Storage;
 class BusinessProfileController extends Controller
 {
     // GET /api/business/profile
+    /**
+     * Profil complet du business
+     *
+     * @group Business Profil
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id_business": "uuid",
+     *     "name_business": "Yapi",
+     *     "prenom_business": "Theodore",
+     *     "phone_business": "0700000000",
+     *     "email_business": "yapi@mail.com",
+     *     "entreprise_business": "YapiTech",
+     *     "email_entreprise_business": "contact@yapitech.com",
+     *     "localisation_entreprise_business": "Abidjan",
+     *     "description_business": "Entreprise tech",
+     *     "status": "active",
+     *     "created_at": "2026-01-01 10:00:00",
+     *
+     *     "id_city": "uuid",
+     *     "name_city": "Abidjan",
+     *
+     *     "id_country": "uuid",
+     *     "name_country": "Côte d'Ivoire",
+     *
+     *     "id_secteur": "uuid",
+     *     "name_secteur": "Technologie",
+     *
+     *     "nb_missions": 10,
+     *     "missions_actives": 3
+     *   }
+     * }
+     */
     public function show(Request $request)
     {
         $business = $request->attributes->get('business');
@@ -20,14 +56,23 @@ class BusinessProfileController extends Controller
             ->leftJoin('secteur_activite as s', 'b.secteur_id', '=', 's.id_secteur')
             ->where('b.id_business', $business->id_business)
             ->select(
-                'b.id_business','b.name_business','b.prenom_business',
-                'b.phone_business','b.email_business',
-                'b.entreprise_business','b.email_entreprise_business',
-                'b.localisation_entreprise_business','b.description_business',
-                'b.status','b.created_at',
-                'c.id_city','c.name_city',
-                'co.id_country','co.name as name_country',
-                's.id_secteur','s.name_secteur'
+                'b.id_business',
+                'b.name_business',
+                'b.prenom_business',
+                'b.phone_business',
+                'b.email_business',
+                'b.entreprise_business',
+                'b.email_entreprise_business',
+                'b.localisation_entreprise_business',
+                'b.description_business',
+                'b.status',
+                'b.created_at',
+                'c.id_city',
+                'c.name_city',
+                'co.id_country',
+                'co.name as name_country',
+                's.id_secteur',
+                's.name_secteur'
             )
             ->first();
 
@@ -39,6 +84,32 @@ class BusinessProfileController extends Controller
     }
 
     // PUT /api/business/profile
+    /**
+     * Mettre à jour le profil business
+     *
+     * @group Business Profil
+     *
+     * @authenticated
+     *
+     * @bodyParam name_business string Nom du responsable
+     * @bodyParam prenom_business string Prénom du responsable
+     * @bodyParam phone_business string Numéro de téléphone
+     * @bodyParam localisation_entreprise_business string Localisation
+     * @bodyParam description_business string Description
+     * @bodyParam city_id string UUID de la ville
+     * @bodyParam country_id string UUID du pays
+     * @bodyParam secteur_id string UUID du secteur
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Profil mis à jour",
+     *   "data": {
+     *     "id_business": "uuid",
+     *     "name_business": "Yapi",
+     *     "prenom_business": "Theodore"
+     *   }
+     * }
+     */
     public function update(Request $request)
     {
         $business = $request->attributes->get('business');
@@ -65,6 +136,28 @@ class BusinessProfileController extends Controller
     }
 
     // POST /api/business/profile/logo
+    /**
+     * Upload du logo business
+     *
+     * @group Business Profil
+     *
+     * @authenticated
+     *
+     * @bodyParam logo file required Image (jpeg, png, jpg, svg, webp, max 2MB)
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Logo mis à jour",
+     *   "data": {
+     *     "logo_url": "https://example.com/storage/business/logos/logo.png"
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Fichier invalide"
+     * }
+     */
     public function uploadLogo(Request $request)
     {
         $business = $request->attributes->get('business');

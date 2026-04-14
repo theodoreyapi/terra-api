@@ -11,6 +11,40 @@ class AgentMissionController extends Controller
 {
     // GET /api/agent/missions
     // Liste les missions actives disponibles
+    /**
+     * Liste des missions actives disponibles
+     *
+     * @group Missions Agent
+     *
+     * @authenticated
+     *
+     * @queryParam type string Filtrer par type de mission. Example: recrutement
+     * @queryParam country_id string Filtrer par pays (UUID)
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "current_page": 1,
+     *     "data": [
+     *       {
+     *         "id_mission": "uuid",
+     *         "type_mission": "recrutement",
+     *         "cible": "personnes",
+     *         "nom_application": "App X",
+     *         "logo_url": "url",
+     *         "couleur_primaire": "#FFFFFF",
+     *         "date_debut": "2026-01-01",
+     *         "date_fin": "2026-02-01",
+     *         "statut": "actif",
+     *         "entreprise_business": "Entreprise",
+     *         "pays": "Côte d'Ivoire",
+     *         "ville": "Abidjan",
+     *         "commune": "Cocody"
+     *       }
+     *     ]
+     *   }
+     * }
+     */
     public function index(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -22,11 +56,21 @@ class AgentMissionController extends Controller
             ->leftJoin('commune as cm', 'm.commune_id', '=', 'cm.id_commune')
             ->where('m.statut', 'actif')
             ->select(
-                'm.id_mission','m.type_mission','m.cible','m.nom_application',
-                'm.logo_url','m.couleur_primaire','m.date_debut','m.date_fin',
-                'm.objectif_nombre','m.statut',
-                'b.entreprise_business','b.name_business',
-                'co.name as pays', 'c.name_city as ville', 'cm.name_commune as commune'
+                'm.id_mission',
+                'm.type_mission',
+                'm.cible',
+                'm.nom_application',
+                'm.logo_url',
+                'm.couleur_primaire',
+                'm.date_debut',
+                'm.date_fin',
+                'm.objectif_nombre',
+                'm.statut',
+                'b.entreprise_business',
+                'b.name_business',
+                'co.name as pays',
+                'c.name_city as ville',
+                'cm.name_commune as commune'
             );
 
         if ($request->has('type')) {
@@ -42,6 +86,31 @@ class AgentMissionController extends Controller
     }
 
     // GET /api/agent/missions/mes-missions
+    /**
+     * Liste des missions de l’agent connecté
+     *
+     * @group Missions Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_mission_agent": "uuid",
+     *       "statut_agent": "actif",
+     *       "remuneration": 5000,
+     *       "objectif_agent": 100,
+     *       "date_acceptation": "2026-01-01",
+     *       "id_mission": "uuid",
+     *       "nom_application": "App X",
+     *       "type_mission": "recensement",
+     *       "statut": "actif",
+     *       "entreprise_business": "Entreprise"
+     *     }
+     *   ]
+     * }
+     */
     public function mesMissions(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -51,10 +120,18 @@ class AgentMissionController extends Controller
             ->leftJoin('business as b', 'm.created_by', '=', 'b.id_business')
             ->where('ma.agent_id', $agent->id_agent)
             ->select(
-                'ma.id_mission_agent','ma.statut as statut_agent',
-                'ma.remuneration','ma.objectif_agent','ma.date_acceptation',
-                'm.id_mission','m.nom_application','m.type_mission','m.statut',
-                'm.date_debut','m.date_fin','m.logo_url',
+                'ma.id_mission_agent',
+                'ma.statut as statut_agent',
+                'ma.remuneration',
+                'ma.objectif_agent',
+                'ma.date_acceptation',
+                'm.id_mission',
+                'm.nom_application',
+                'm.type_mission',
+                'm.statut',
+                'm.date_debut',
+                'm.date_fin',
+                'm.logo_url',
                 'b.entreprise_business'
             )
             ->orderByDesc('ma.created_at')
@@ -64,6 +141,30 @@ class AgentMissionController extends Controller
     }
 
     // GET /api/agent/missions/{id}
+    /**
+     * Détails d’une mission
+     *
+     * @group Missions Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission. Example: uuid
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id_mission": "uuid",
+     *     "nom_application": "App X",
+     *     "mon_statut": "actif",
+     *     "formulaires": []
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Mission introuvable"
+     * }
+     */
     public function show(Request $request, $id)
     {
         $agent = $request->attributes->get('agent');
@@ -74,8 +175,15 @@ class AgentMissionController extends Controller
             ->leftJoin('city as c', 'm.city_id', '=', 'c.id_city')
             ->leftJoin('commune as cm', 'm.commune_id', '=', 'cm.id_commune')
             ->where('m.id_mission', $id)
-            ->select('m.*', 'b.entreprise_business','b.name_business','b.description_business',
-                'co.name as pays','c.name_city as ville','cm.name_commune as commune')
+            ->select(
+                'm.*',
+                'b.entreprise_business',
+                'b.name_business',
+                'b.description_business',
+                'co.name as pays',
+                'c.name_city as ville',
+                'cm.name_commune as commune'
+            )
             ->first();
 
         if (! $mission) {
@@ -97,6 +205,34 @@ class AgentMissionController extends Controller
     }
 
     // POST /api/agent/missions/{id}/rejoindre
+    /**
+     * Rejoindre une mission
+     *
+     * @group Missions Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Demande soumise. En attente de validation.",
+     *   "data": {
+     *     "id_mission_agent": "uuid",
+     *     "statut": "invite"
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Vous êtes déjà dans cette mission"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Mission introuvable ou non active"
+     * }
+     */
     public function rejoindre(Request $request, $id)
     {
         $agent = $request->attributes->get('agent');
@@ -133,6 +269,38 @@ class AgentMissionController extends Controller
     }
 
     // GET /api/agent/missions/{id}/formulaire
+    /**
+     * Récupérer les formulaires d’une mission
+     *
+     * @group Formulaires Mission
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_formulaire": "uuid",
+     *       "nom": "Formulaire 1",
+     *       "champs": [
+     *         {
+     *           "id_champ_formulaire": "uuid",
+     *           "type_champ": "nom",
+     *           "label": "Nom",
+     *           "obligatoire": true
+     *         }
+     *       ]
+     *     }
+     *   ]
+     * }
+     *
+     * @response 403 {
+     *   "success": false,
+     *   "message": "Accès refusé à cette mission"
+     * }
+     */
     public function formulaire(Request $request, $id)
     {
         $agent = $request->attributes->get('agent');
@@ -155,7 +323,7 @@ class AgentMissionController extends Controller
                 ->leftJoin('parametres_champs as pc', 'cf.id_champ_formulaire', '=', 'pc.champ_id')
                 ->where('cf.formulaire_id', $formulaire->id_formulaire)
                 ->orderBy('cf.ordre')
-                ->select('cf.*', 'pc.rendre_facultatif','pc.rendre_obligatoire','pc.gestion_appelite')
+                ->select('cf.*', 'pc.rendre_facultatif', 'pc.rendre_obligatoire', 'pc.gestion_appelite')
                 ->get();
         }
 
@@ -163,6 +331,40 @@ class AgentMissionController extends Controller
     }
 
     // POST /api/agent/missions/{id}/formulaire/soumettre
+    /**
+     * Soumettre une réponse à un formulaire
+     *
+     * @group Réponses Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @bodyParam formulaire_id string required UUID du formulaire
+     * @bodyParam donnees array required Données du formulaire
+     * @bodyParam latitude string Coordonnée GPS
+     * @bodyParam longitude string Coordonnée GPS
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Réponse soumise avec succès",
+     *   "data": {
+     *     "id_reponse": "uuid",
+     *     "statut": "soumis",
+     *     "submitted_at": "2026-01-01 10:00:00"
+     *   }
+     * }
+     *
+     * @response 403 {
+     *   "success": false,
+     *   "message": "Accès refusé à cette mission"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Formulaire invalide pour cette mission"
+     * }
+     */
     public function soumettre(Request $request, $id)
     {
         $agent = $request->attributes->get('agent');
@@ -228,6 +430,29 @@ class AgentMissionController extends Controller
     }
 
     // GET /api/agent/missions/{id}/mes-reponses
+    /**
+     * Historique des réponses de l’agent sur une mission
+     *
+     * @group Réponses Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "data": [
+     *       {
+     *         "id_reponse": "uuid",
+     *         "nom_formulaire": "Formulaire 1",
+     *         "statut": "soumis",
+     *         "submitted_at": "2026-01-01 10:00:00"
+     *       }
+     *     ]
+     *   }
+     * }
+     */
     public function mesReponses(Request $request, $id)
     {
         $agent = $request->attributes->get('agent');
@@ -244,6 +469,35 @@ class AgentMissionController extends Controller
     }
 
     // GET /api/agent/missions/{id}/statistiques
+    /**
+     * Statistiques de mission pour l’agent
+     *
+     * @group Missions Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "mission_id": "uuid",
+     *     "statut_agent": "actif",
+     *     "remuneration": 5000,
+     *     "objectif_agent": 100,
+     *     "total_reponses": 20,
+     *     "reponses_validees": 15,
+     *     "reponses_rejetees": 2,
+     *     "en_attente": 3,
+     *     "progression": "20%"
+     *   }
+     * }
+     *
+     * @response 403 {
+     *   "success": false,
+     *   "message": "Non inscrit à cette mission"
+     * }
+     */
     public function statistiques(Request $request, $id)
     {
         $agent = $request->attributes->get('agent');

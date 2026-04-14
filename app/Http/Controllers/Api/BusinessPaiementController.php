@@ -24,6 +24,37 @@ class BusinessPaiementController extends Controller
     }
 
     // POST /api/business/missions/{id}/agents/{aid}/payer
+    /**
+     * Payer un agent pour une mission
+     *
+     * Permet d'effectuer un paiement individuel vers un agent et de créditer automatiquement son wallet.
+     *
+     * @group Business Paiements
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     * @urlParam aid string required ID de l'agent
+     *
+     * @bodyParam montant number required Montant à payer. Example: 5000
+     * @bodyParam provider string required Provider de paiement. Example: wave. Enum: wave,orange,mtn,moov,visa
+     * @bodyParam reference_paiement string Référence de transaction. Example: TXN123456
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Paiement effectué avec succès",
+     *   "data": {
+     *     "id_paiement": "uuid",
+     *     "montant": 5000,
+     *     "statut": "complete",
+     *     "provider": "wave"
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Agent introuvable dans cette mission"
+     * }
+     */
     public function payerAgent(Request $request, string $id, string $aid)
     {
         $business = $request->attributes->get('business');
@@ -94,6 +125,34 @@ class BusinessPaiementController extends Controller
     }
 
     // POST /api/business/missions/{id}/agents/payer-tous
+    /**
+     * Paiement groupé des agents
+     *
+     * Permet de payer tous les agents éligibles d'une mission en une seule opération.
+     *
+     * @group Business Paiements
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @bodyParam provider string required Provider de paiement. Example: orange. Enum: wave,orange,mtn,moov,visa
+     * @bodyParam reference_paiement string Référence de paiement globale. Example: GROUP_TXN_001
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "3 agent(s) payé(s). 1 ignoré(s).",
+     *   "data": {
+     *     "agents_payes": 3,
+     *     "agents_ignores": 1,
+     *     "montant_total": 15000
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Aucun agent éligible au paiement"
+     * }
+     */
     public function payerTous(Request $request, string $id)
     {
         $business = $request->attributes->get('business');
@@ -183,13 +242,44 @@ class BusinessPaiementController extends Controller
             'message' => "{$payes} agent(s) payé(s). {$ignorés} ignoré(s) (déjà payés).",
             'data'    => [
                 'agents_payes'  => $payes,
-                'agents_ignores'=> $ignorés,
+                'agents_ignores' => $ignorés,
                 'montant_total' => $montantTotal,
             ],
         ]);
     }
 
     // GET /api/business/missions/{id}/paiements
+    /**
+     * Historique des paiements d'une mission
+     *
+     * Retourne tous les paiements effectués pour une mission avec filtres optionnels.
+     *
+     * @group Business Paiements
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @queryParam statut string Filtrer par statut. Example: complete
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_paiement": "uuid",
+     *       "montant": 5000,
+     *       "statut": "complete",
+     *       "provider": "wave",
+     *       "agent": {
+     *         "name_agent": "John",
+     *         "lastname_agent": "Doe"
+     *       }
+     *     }
+     *   ],
+     *   "meta": {
+     *     "total_paye": 25000
+     *   }
+     * }
+     */
     public function historique(Request $request, string $id)
     {
         $business = $request->attributes->get('business');

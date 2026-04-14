@@ -24,6 +24,28 @@ class BusinessPlanController extends Controller
     }
 
     // GET /api/business/missions/{id}/plans
+    /**
+     * Lister les plans d'une mission
+     *
+     * Récupère tous les plans tarifaires associés à une mission.
+     *
+     * @group Business Plans
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission. Example: 8f3a-uuid
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_plan": "uuid",
+     *       "montant": 5000,
+     *       "duree": 30,
+     *       "unite_duree": "jours"
+     *     }
+     *   ]
+     * }
+     */
     public function index(Request $request, string $id)
     {
         $business = $request->attributes->get('business');
@@ -38,6 +60,31 @@ class BusinessPlanController extends Controller
     }
 
     // POST /api/business/missions/{id}/plans
+    /**
+     * Créer un plan
+     *
+     * Permet d’ajouter un plan tarifaire à une mission.
+     *
+     * @group Business Plans
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @bodyParam montant number required Montant du plan. Example: 10000
+     * @bodyParam duree integer required Durée. Example: 30
+     * @bodyParam unite_duree string required Unité de durée. Example: jours
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Plan créé",
+     *   "data": {
+     *     "id_plan": "uuid",
+     *     "montant": 10000,
+     *     "duree": 30,
+     *     "unite_duree": "jours"
+     *   }
+     * }
+     */
     public function store(Request $request, string $id)
     {
         $business = $request->attributes->get('business');
@@ -69,6 +116,26 @@ class BusinessPlanController extends Controller
     }
 
     // PUT /api/business/missions/{id}/plans/{pid}
+    /**
+     * Mettre à jour un plan
+     *
+     * Permet de modifier un plan existant.
+     *
+     * @group Business Plans
+     * @authenticated
+     *
+     * @urlParam id string required ID mission
+     * @urlParam pid string required ID plan
+     *
+     * @bodyParam montant number Montant du plan. Example: 15000
+     * @bodyParam duree integer Durée. Example: 60
+     * @bodyParam unite_duree string Unité de durée. Example: mois
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Plan mis à jour"
+     * }
+     */
     public function update(Request $request, string $id, string $pid)
     {
         $business = $request->attributes->get('business');
@@ -100,6 +167,27 @@ class BusinessPlanController extends Controller
     }
 
     // DELETE /api/business/missions/{id}/plans/{pid}
+    /**
+     * Supprimer un plan
+     *
+     * Supprime un plan associé à une mission.
+     *
+     * @group Business Plans
+     * @authenticated
+     *
+     * @urlParam id string required ID mission
+     * @urlParam pid string required ID plan
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Plan supprimé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Plan introuvable"
+     * }
+     */
     public function destroy(Request $request, string $id, string $pid)
     {
         $business = $request->attributes->get('business');

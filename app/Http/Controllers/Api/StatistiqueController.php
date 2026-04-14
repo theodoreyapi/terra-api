@@ -12,6 +12,24 @@ use Illuminate\Support\Facades\DB;
 
 class StatistiqueController extends Controller
 {
+    /**
+     * Dashboard global des statistiques
+     *
+     * Retourne les statistiques globales de la plateforme.
+     *
+     * @group Statistiques
+     * @authenticated
+     *
+     * @response 200 {
+     *   "missions_total": 120,
+     *   "missions_actives": 45,
+     *   "reponses_total": 5600,
+     *   "reponses_aujourd_hui": 120,
+     *   "agents_total": 300,
+     *   "missions_recentes": [],
+     *   "performance_mensuelle": []
+     * }
+     */
     public function dashboard(): JsonResponse
     {
         $stats = [
@@ -30,6 +48,28 @@ class StatistiqueController extends Controller
         return response()->json($stats);
     }
 
+    /**
+     * Statistiques d'une mission
+     *
+     * Analyse complète des performances d'une mission spécifique.
+     *
+     * @group Statistiques
+     * @authenticated
+     *
+     * @urlParam missionId string required ID de la mission
+     *
+     * @response 200 {
+     *   "mission": {},
+     *   "reponses_total": 250,
+     *   "objectif_atteint": 75.5,
+     *   "progression_par_jour": [],
+     *   "top_agents": []
+     * }
+     *
+     * @response 404 {
+     *   "message": "Mission not found"
+     * }
+     */
     public function missionStats(string $missionId): JsonResponse
     {
         $mission = Mission::findOrFail($missionId);
@@ -56,6 +96,24 @@ class StatistiqueController extends Controller
         return response()->json($stats);
     }
 
+    /**
+     * Statistiques d'un agent
+     *
+     * Analyse des performances individuelles d’un agent.
+     *
+     * @group Statistiques
+     * @authenticated
+     *
+     * @urlParam agentId string required ID de l'agent
+     *
+     * @response 200 {
+     *   "agent": {},
+     *   "reponses_total": 120,
+     *   "reponses_validees": 100,
+     *   "missions_actives": 5,
+     *   "performance_7_jours": []
+     * }
+     */
     public function agentStats(string $agentId): JsonResponse
     {
         $agent = User::findOrFail($agentId);
@@ -77,6 +135,20 @@ class StatistiqueController extends Controller
         return response()->json($stats);
     }
 
+    /**
+     * Analyse de performance globale
+     *
+     * Fournit une vue globale des performances de la plateforme.
+     *
+     * @group Statistiques
+     * @authenticated
+     *
+     * @response 200 {
+     *   "missions_par_type": [],
+     *   "reponses_par_statut": [],
+     *   "taux_completion": 85.4
+     * }
+     */
     public function performance(): JsonResponse
     {
         $performance = [

@@ -11,6 +11,33 @@ use Illuminate\Support\Str;
 class AgentPermisController extends Controller
 {
     // GET /api/agent/permis
+    /**
+     * Liste des permis de conduire de l’agent
+     *
+     * @group Permis Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_permis": "uuid",
+     *       "recto_permis": "agents/permis/recto.jpg",
+     *       "verso_permis": "agents/permis/verso.jpg",
+     *       "recto_url": "http://localhost/storage/agents/permis/recto.jpg",
+     *       "verso_url": "http://localhost/storage/agents/permis/verso.jpg",
+     *       "created_at": "2026-01-01 10:00:00",
+     *       "updated_at": "2026-01-01 10:00:00"
+     *     }
+     *   ]
+     * }
+     *
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Non authentifié"
+     * }
+     */
     public function index(Request $request)
     {
         $agent  = $request->attributes->get('agent');
@@ -27,6 +54,34 @@ class AgentPermisController extends Controller
     }
 
     // POST /api/agent/permis
+    /**
+     * Ajouter un permis de conduire
+     *
+     * @group Permis Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam recto_permis file required Image ou PDF (jpeg, png, jpg, pdf, max 3MB)
+     * @bodyParam verso_permis file required Image ou PDF (jpeg, png, jpg, pdf, max 3MB)
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Permis ajouté",
+     *   "data": {
+     *     "id_permis": "uuid",
+     *     "recto_permis": "agents/permis/recto.jpg",
+     *     "verso_permis": "agents/permis/verso.jpg",
+     *     "recto_url": "http://localhost/storage/agents/permis/recto.jpg",
+     *     "verso_url": "http://localhost/storage/agents/permis/verso.jpg",
+     *     "created_at": "2026-01-01 10:00:00"
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Erreur de validation"
+     * }
+     */
     public function store(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -62,6 +117,41 @@ class AgentPermisController extends Controller
     }
 
     // PUT /api/agent/permis/{id}
+    /**
+     * Modifier un permis de conduire
+     *
+     * @group Permis Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID du permis. Exemple: uuid
+     *
+     * @bodyParam recto_permis file Image ou PDF
+     * @bodyParam verso_permis file Image ou PDF
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Permis mis à jour",
+     *   "data": {
+     *     "id_permis": "uuid",
+     *     "recto_permis": "agents/permis/new_recto.jpg",
+     *     "verso_permis": "agents/permis/new_verso.jpg",
+     *     "recto_url": "http://localhost/storage/agents/permis/new_recto.jpg",
+     *     "verso_url": "http://localhost/storage/agents/permis/new_verso.jpg",
+     *     "updated_at": "2026-01-01 12:00:00"
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Permis introuvable"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Aucun fichier fourni"
+     * }
+     */
     public function update(Request $request, string $id)
     {
         $agent  = $request->attributes->get('agent');

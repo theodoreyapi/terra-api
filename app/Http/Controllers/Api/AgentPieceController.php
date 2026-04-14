@@ -11,6 +11,33 @@ use Illuminate\Support\Str;
 class AgentPieceController extends Controller
 {
     // GET /api/agent/pieces
+    /**
+     * Liste des pièces d’identité de l’agent
+     *
+     * @group Pièces Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_piece": "uuid",
+     *       "recto_piece": "agents/pieces/recto.jpg",
+     *       "verso_piece": "agents/pieces/verso.jpg",
+     *       "recto_url": "http://localhost/storage/agents/pieces/recto.jpg",
+     *       "verso_url": "http://localhost/storage/agents/pieces/verso.jpg",
+     *       "created_at": "2026-01-01 10:00:00",
+     *       "updated_at": "2026-01-01 10:00:00"
+     *     }
+     *   ]
+     * }
+     *
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Non authentifié"
+     * }
+     */
     public function index(Request $request)
     {
         $agent  = $request->attributes->get('agent');
@@ -27,6 +54,34 @@ class AgentPieceController extends Controller
     }
 
     // POST /api/agent/pieces
+    /**
+     * Ajouter une pièce d’identité
+     *
+     * @group Pièces Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam recto_piece file required Image ou PDF (jpeg, png, jpg, pdf, max 3MB)
+     * @bodyParam verso_piece file required Image ou PDF (jpeg, png, jpg, pdf, max 3MB)
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Pièce d'identité ajoutée",
+     *   "data": {
+     *     "id_piece": "uuid",
+     *     "recto_piece": "agents/pieces/recto.jpg",
+     *     "verso_piece": "agents/pieces/verso.jpg",
+     *     "recto_url": "http://localhost/storage/agents/pieces/recto.jpg",
+     *     "verso_url": "http://localhost/storage/agents/pieces/verso.jpg",
+     *     "created_at": "2026-01-01 10:00:00"
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Erreur de validation"
+     * }
+     */
     public function store(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -62,6 +117,41 @@ class AgentPieceController extends Controller
     }
 
     // PUT /api/agent/pieces/{id}
+    /**
+     * Modifier une pièce d’identité
+     *
+     * @group Pièces Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la pièce. Exemple: uuid
+     *
+     * @bodyParam recto_piece file Image ou PDF
+     * @bodyParam verso_piece file Image ou PDF
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Pièce mise à jour",
+     *   "data": {
+     *     "id_piece": "uuid",
+     *     "recto_piece": "agents/pieces/new_recto.jpg",
+     *     "verso_piece": "agents/pieces/new_verso.jpg",
+     *     "recto_url": "http://localhost/storage/agents/pieces/new_recto.jpg",
+     *     "verso_url": "http://localhost/storage/agents/pieces/new_verso.jpg",
+     *     "updated_at": "2026-01-01 12:00:00"
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Pièce introuvable"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Aucun fichier fourni"
+     * }
+     */
     public function update(Request $request, string $id)
     {
         $agent = $request->attributes->get('agent');

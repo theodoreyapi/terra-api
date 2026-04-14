@@ -24,6 +24,41 @@ class BusinessFormulaireController extends Controller
     }
 
     // GET /api/business/missions/{id}/formulaires
+    /**
+     * Liste des formulaires d’une mission
+     *
+     * @group Business Formulaires
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_formulaire": "uuid",
+     *       "nom": "Formulaire principal",
+     *       "ordre": 0,
+     *       "champs": [
+     *         {
+     *           "id_champ_formulaire": "uuid",
+     *           "label": "Nom",
+     *           "type": "text",
+     *           "ordre": 0,
+     *           "rendre_facultatif": false,
+     *           "rendre_obligatoire": true,
+     *           "gestion_appelite": false
+     *         }
+     *       ]
+     *     }
+     *   ]
+     * }
+     *
+     * @response 404 {
+     *   "message": "Mission introuvable"
+     * }
+     */
     public function index(Request $request, $id)
     {
         $business = $request->attributes->get('business');
@@ -36,7 +71,7 @@ class BusinessFormulaireController extends Controller
                 ->leftJoin('parametres_champs as pc', 'cf.id_champ_formulaire', '=', 'pc.champ_id')
                 ->where('cf.formulaire_id', $formulaire->id_formulaire)
                 ->orderBy('cf.ordre')
-                ->select('cf.*','pc.rendre_facultatif','pc.rendre_obligatoire','pc.gestion_appelite')
+                ->select('cf.*', 'pc.rendre_facultatif', 'pc.rendre_obligatoire', 'pc.gestion_appelite')
                 ->get();
         }
 
@@ -44,6 +79,32 @@ class BusinessFormulaireController extends Controller
     }
 
     // POST /api/business/missions/{id}/formulaires
+    /**
+     * Créer un formulaire pour une mission
+     *
+     * @group Business Formulaires
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @bodyParam nom string required Nom du formulaire. Example: Informations client
+     * @bodyParam ordre integer Ordre d'affichage. Example: 0
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Formulaire créé",
+     *   "data": {
+     *     "id_formulaire": "uuid",
+     *     "nom": "Informations client",
+     *     "ordre": 0
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "message": "Mission introuvable"
+     * }
+     */
     public function store(Request $request, $id)
     {
         $business = $request->attributes->get('business');
@@ -78,6 +139,34 @@ class BusinessFormulaireController extends Controller
     }
 
     // PUT /api/business/missions/{id}/formulaires/{fid}
+    /**
+     * Mettre à jour un formulaire
+     *
+     * @group Business Formulaires
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID mission
+     * @urlParam fid string required ID formulaire
+     *
+     * @bodyParam nom string Nom du formulaire
+     * @bodyParam ordre integer Ordre d'affichage
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Formulaire mis à jour",
+     *   "data": {
+     *     "id_formulaire": "uuid",
+     *     "nom": "Nouveau nom",
+     *     "ordre": 1
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Formulaire introuvable"
+     * }
+     */
     public function update(Request $request, $id, $fid)
     {
         $business = $request->attributes->get('business');
@@ -108,6 +197,26 @@ class BusinessFormulaireController extends Controller
     }
 
     // DELETE /api/business/missions/{id}/formulaires/{fid}
+    /**
+     * Supprimer un formulaire
+     *
+     * @group Business Formulaires
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID mission
+     * @urlParam fid string required ID formulaire
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Formulaire supprimé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Formulaire introuvable"
+     * }
+     */
     public function destroy(Request $request, $id, $fid)
     {
         $business = $request->attributes->get('business');
@@ -123,195 +232,5 @@ class BusinessFormulaireController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => 'Formulaire supprimé']);
-    }
-}
-
-// ─────────────────────────────────────────────
-// BusinessChampController
-// ─────────────────────────────────────────────
-class BusinessChampController extends Controller
-{
-    private function getFormulaireOrFail($formulaireId, $businessId)
-    {
-        $formulaire = DB::table('formulaires as f')
-            ->join('missions as m', 'f.mission_id', '=', 'm.id_mission')
-            ->where('f.id_formulaire', $formulaireId)
-            ->where('m.created_by', $businessId)
-            ->first();
-
-        if (! $formulaire) abort(404, 'Formulaire introuvable');
-        return $formulaire;
-    }
-
-    // POST /api/business/formulaires/{fid}/champs
-    public function store(Request $request, $fid)
-    {
-        $business = $request->attributes->get('business');
-        $this->getFormulaireOrFail($fid, $business->id_business);
-
-        $validated = $request->validate([
-            'type_champ'   => 'required|string|max:50',
-            'label'        => 'required|string|max:255',
-            'obligatoire'  => 'boolean',
-            'ordre'        => 'nullable|integer',
-            'options'      => 'nullable|array',
-            'jours_options'  => 'nullable|array',
-            'mois_options'   => 'nullable|array',
-            'annee_options'  => 'nullable|array',
-        ]);
-
-        if (! isset($validated['ordre'])) {
-            $maxOrdre = DB::table('champs_formulaire')->where('formulaire_id', $fid)->max('ordre');
-            $validated['ordre'] = ($maxOrdre ?? -1) + 1;
-        }
-
-        $cId = (string) Str::uuid();
-        DB::table('champs_formulaire')->insert([
-            'id_champ_formulaire' => $cId,
-            'formulaire_id'       => $fid,
-            'type_champ'          => $validated['type_champ'],
-            'label'               => $validated['label'],
-            'obligatoire'         => $validated['obligatoire'] ?? false,
-            'ordre'               => $validated['ordre'],
-            'options'             => isset($validated['options']) ? json_encode($validated['options']) : null,
-            'jours_options'       => isset($validated['jours_options']) ? json_encode($validated['jours_options']) : null,
-            'mois_options'        => isset($validated['mois_options']) ? json_encode($validated['mois_options']) : null,
-            'annee_options'       => isset($validated['annee_options']) ? json_encode($validated['annee_options']) : null,
-            'created_at'          => now(),
-            'updated_at'          => now(),
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Champ ajouté',
-            'data'    => DB::table('champs_formulaire')->where('id_champ_formulaire', $cId)->first(),
-        ], 201);
-    }
-
-    // PUT /api/business/formulaires/{fid}/champs/{cid}
-    public function update(Request $request, $fid, $cid)
-    {
-        $business = $request->attributes->get('business');
-        $this->getFormulaireOrFail($fid, $business->id_business);
-
-        $champ = DB::table('champs_formulaire')
-            ->where('id_champ_formulaire', $cid)
-            ->where('formulaire_id', $fid)
-            ->first();
-
-        if (! $champ) {
-            return response()->json(['success' => false, 'message' => 'Champ introuvable'], 404);
-        }
-
-        $validated = $request->validate([
-            'type_champ'   => 'sometimes|string|max:50',
-            'label'        => 'sometimes|string|max:255',
-            'obligatoire'  => 'boolean',
-            'ordre'        => 'sometimes|integer',
-            'options'      => 'nullable|array',
-            'jours_options'  => 'nullable|array',
-            'mois_options'   => 'nullable|array',
-            'annee_options'  => 'nullable|array',
-        ]);
-
-        // Encode JSON fields
-        foreach (['options','jours_options','mois_options','annee_options'] as $jsonField) {
-            if (isset($validated[$jsonField])) {
-                $validated[$jsonField] = json_encode($validated[$jsonField]);
-            }
-        }
-
-        $validated['updated_at'] = now();
-        DB::table('champs_formulaire')->where('id_champ_formulaire', $cid)->update($validated);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Champ mis à jour',
-            'data'    => DB::table('champs_formulaire')->where('id_champ_formulaire', $cid)->first(),
-        ]);
-    }
-
-    // DELETE /api/business/formulaires/{fid}/champs/{cid}
-    public function destroy(Request $request, $fid, $cid)
-    {
-        $business = $request->attributes->get('business');
-        $this->getFormulaireOrFail($fid, $business->id_business);
-
-        $rows = DB::table('champs_formulaire')
-            ->where('id_champ_formulaire', $cid)
-            ->where('formulaire_id', $fid)
-            ->delete();
-
-        if (! $rows) {
-            return response()->json(['success' => false, 'message' => 'Champ introuvable'], 404);
-        }
-
-        return response()->json(['success' => true, 'message' => 'Champ supprimé']);
-    }
-
-    // PUT /api/business/formulaires/{fid}/champs/ordre
-    public function reordonner(Request $request, $fid)
-    {
-        $business = $request->attributes->get('business');
-        $this->getFormulaireOrFail($fid, $business->id_business);
-
-        $request->validate([
-            'ordre'            => 'required|array',
-            'ordre.*.id'       => 'required|uuid',
-            'ordre.*.position' => 'required|integer|min:0',
-        ]);
-
-        foreach ($request->ordre as $item) {
-            DB::table('champs_formulaire')
-                ->where('id_champ_formulaire', $item['id'])
-                ->where('formulaire_id', $fid)
-                ->update(['ordre' => $item['position'], 'updated_at' => now()]);
-        }
-
-        return response()->json(['success' => true, 'message' => 'Ordre mis à jour']);
-    }
-
-    // PUT /api/business/champs/{cid}/parametres
-    public function parametres(Request $request, $cid)
-    {
-        $business = $request->attributes->get('business');
-
-        // Vérifier que ce champ appartient bien à une mission du business
-        $champ = DB::table('champs_formulaire as cf')
-            ->join('formulaires as f', 'cf.formulaire_id', '=', 'f.id_formulaire')
-            ->join('missions as m', 'f.mission_id', '=', 'm.id_mission')
-            ->where('cf.id_champ_formulaire', $cid)
-            ->where('m.created_by', $business->id_business)
-            ->first();
-
-        if (! $champ) {
-            return response()->json(['success' => false, 'message' => 'Champ introuvable'], 404);
-        }
-
-        $validated = $request->validate([
-            'rendre_facultatif'  => 'boolean',
-            'rendre_obligatoire' => 'boolean',
-            'gestion_appelite'   => 'boolean',
-        ]);
-
-        $existing = DB::table('parametres_champs')->where('champ_id', $cid)->first();
-
-        if ($existing) {
-            $validated['updated_at'] = now();
-            DB::table('parametres_champs')->where('champ_id', $cid)->update($validated);
-        } else {
-            DB::table('parametres_champs')->insert(array_merge($validated, [
-                'id_param_champs' => (string) Str::uuid(),
-                'champ_id'        => $cid,
-                'created_at'      => now(),
-                'updated_at'      => now(),
-            ]));
-        }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Paramètres mis à jour',
-            'data'    => DB::table('parametres_champs')->where('champ_id', $cid)->first(),
-        ]);
     }
 }

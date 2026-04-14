@@ -26,6 +26,41 @@ class BusinessChampController extends Controller
     }
 
     // POST /api/business/formulaires/{fid}/champs
+    /**
+ * Ajouter un champ à un formulaire
+ *
+ * @group Business Champs
+ *
+ * @authenticated
+ *
+ * @urlParam fid string required ID du formulaire
+ *
+ * @bodyParam type_champ string required Type du champ (text, number, select, radio, checkbox, date, etc.)
+ * @bodyParam label string required Libellé du champ
+ * @bodyParam obligatoire boolean Champ obligatoire ou non. Example: true
+ * @bodyParam ordre integer Position du champ
+ * @bodyParam options array Liste d’options (pour select, radio, checkbox)
+ * @bodyParam jours_options array Options jours
+ * @bodyParam mois_options array Options mois
+ * @bodyParam annee_options array Options années
+ *
+ * @response 201 {
+ *   "success": true,
+ *   "message": "Champ ajouté",
+ *   "data": {
+ *     "id_champ_formulaire": "uuid",
+ *     "type_champ": "text",
+ *     "label": "Nom",
+ *     "obligatoire": true,
+ *     "ordre": 0,
+ *     "options": null
+ *   }
+ * }
+ *
+ * @response 404 {
+ *   "message": "Formulaire introuvable"
+ * }
+ */
     public function store(Request $request, string $fid)
     {
         $business = $request->attributes->get('business');
@@ -78,6 +113,39 @@ class BusinessChampController extends Controller
     }
 
     // PUT /api/business/formulaires/{fid}/champs/{cid}
+    /**
+ * Mettre à jour un champ
+ *
+ * @group Business Champs
+ *
+ * @authenticated
+ *
+ * @urlParam fid string required ID formulaire
+ * @urlParam cid string required ID champ
+ *
+ * @bodyParam type_champ string Type du champ
+ * @bodyParam label string Libellé
+ * @bodyParam obligatoire boolean Champ obligatoire
+ * @bodyParam ordre integer Position
+ * @bodyParam options array Liste d’options
+ * @bodyParam jours_options array
+ * @bodyParam mois_options array
+ * @bodyParam annee_options array
+ *
+ * @response 200 {
+ *   "success": true,
+ *   "message": "Champ mis à jour",
+ *   "data": {
+ *     "id_champ_formulaire": "uuid",
+ *     "label": "Nom modifié"
+ *   }
+ * }
+ *
+ * @response 404 {
+ *   "success": false,
+ *   "message": "Champ introuvable"
+ * }
+ */
     public function update(Request $request, string $fid, string $cid)
     {
         $business = $request->attributes->get('business');
@@ -126,6 +194,26 @@ class BusinessChampController extends Controller
     }
 
     // DELETE /api/business/formulaires/{fid}/champs/{cid}
+    /**
+ * Supprimer un champ
+ *
+ * @group Business Champs
+ *
+ * @authenticated
+ *
+ * @urlParam fid string required ID formulaire
+ * @urlParam cid string required ID champ
+ *
+ * @response 200 {
+ *   "success": true,
+ *   "message": "Champ supprimé"
+ * }
+ *
+ * @response 404 {
+ *   "success": false,
+ *   "message": "Champ introuvable"
+ * }
+ */
     public function destroy(Request $request, string $fid, string $cid)
     {
         $business = $request->attributes->get('business');
@@ -147,6 +235,30 @@ class BusinessChampController extends Controller
     }
 
     // PUT /api/business/formulaires/{fid}/champs/ordre
+    /**
+ * Réordonner les champs d’un formulaire
+ *
+ * @group Business Champs
+ *
+ * @authenticated
+ *
+ * @urlParam fid string required ID formulaire
+ *
+ * @bodyParam ordre array required Liste des champs avec leur position
+ * @bodyParam ordre[].id string required ID du champ
+ * @bodyParam ordre[].position integer required Nouvelle position
+ *
+ * @response 200 {
+ *   "success": true,
+ *   "message": "Ordre des champs mis à jour",
+ *   "data": [
+ *     {
+ *       "id_champ_formulaire": "uuid",
+ *       "ordre": 0
+ *     }
+ *   ]
+ * }
+ */
     public function reordonner(Request $request, string $fid)
     {
         $business = $request->attributes->get('business');
@@ -181,6 +293,35 @@ class BusinessChampController extends Controller
     }
 
     // PUT /api/business/champs/{cid}/parametres
+    /**
+ * Mettre à jour les paramètres d’un champ
+ *
+ * @group Business Champs
+ *
+ * @authenticated
+ *
+ * @urlParam cid string required ID du champ
+ *
+ * @bodyParam rendre_facultatif boolean
+ * @bodyParam rendre_obligatoire boolean
+ * @bodyParam gestion_appelite boolean
+ *
+ * @response 200 {
+ *   "success": true,
+ *   "message": "Paramètres du champ mis à jour",
+ *   "data": {
+ *     "champ_id": "uuid",
+ *     "rendre_facultatif": false,
+ *     "rendre_obligatoire": true,
+ *     "gestion_appelite": false
+ *   }
+ * }
+ *
+ * @response 404 {
+ *   "success": false,
+ *   "message": "Champ introuvable"
+ * }
+ */
     public function parametres(Request $request, string $cid)
     {
         $business = $request->attributes->get('business');

@@ -10,6 +10,34 @@ use Illuminate\Support\Str;
 class AgentLangueController extends Controller
 {
     // GET /api/agent/langues
+    /**
+     * Liste des langues de l’agent
+     *
+     * @group Langues Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_langue_agent": "uuid",
+     *       "id_langue": "uuid",
+     *       "name_langue": "Français"
+     *     },
+     *     {
+     *       "id_langue_agent": "uuid",
+     *       "id_langue": "uuid",
+     *       "name_langue": "Anglais"
+     *     }
+     *   ]
+     * }
+     *
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Non authentifié"
+     * }
+     */
     public function index(Request $request)
     {
         $agent   = $request->attributes->get('agent');
@@ -23,6 +51,30 @@ class AgentLangueController extends Controller
     }
 
     // POST /api/agent/langues
+    /**
+     * Ajouter une langue au profil
+     *
+     * @group Langues Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam langue_id uuid required ID de la langue. Exemple: uuid
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Langue ajoutée",
+     *   "data": {
+     *     "id_langue_agent": "uuid",
+     *     "id_langue": "uuid",
+     *     "name_langue": "Français"
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Cette langue est déjà ajoutée à votre profil"
+     * }
+     */
     public function store(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -67,6 +119,25 @@ class AgentLangueController extends Controller
     }
 
     // DELETE /api/agent/langues/{id}
+    /**
+     * Supprimer une langue du profil
+     *
+     * @group Langues Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID de la relation langue-agent. Exemple: uuid
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Langue supprimée"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Langue introuvable"
+     * }
+     */
     public function destroy(Request $request, string $id)
     {
         $agent = $request->attributes->get('agent');

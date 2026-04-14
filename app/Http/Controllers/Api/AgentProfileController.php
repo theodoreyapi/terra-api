@@ -11,6 +11,82 @@ use Illuminate\Support\Str;
 class AgentProfileController extends Controller
 {
     // GET /api/agent/profile
+    /**
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id_agent": "uuid",
+     *     "genre_agent": "M",
+     *     "name_agent": "Yapi",
+     *     "lastname_agent": "Theodore",
+     *     "profession_agent": "Développeur",
+     *     "naissance_agent": "1995-01-01",
+     *     "email_agent": "test@mail.com",
+     *     "phone_agent": "0700000000",
+     *     "image_agent": "/storage/agents/photos/photo.jpg",
+     *     "longitude_agent": "-4.0083",
+     *     "latitude_agent": "5.3599",
+     *     "experience_mission_agent": "oui",
+     *     "permis_agent": "oui",
+     *     "status": "active",
+     *
+     *     "id_diplome": "uuid",
+     *     "name_diplome": "Master",
+     *
+     *     "id_etude": "uuid",
+     *     "name_etude": "Licence",
+     *
+     *     "id_city": "uuid",
+     *     "name_city": "Abidjan",
+     *
+     *     "id_country": "uuid",
+     *     "name_country": "Côte d'Ivoire",
+     *
+     *     "id_commune": "uuid",
+     *     "name_commune": "Yopougon",
+     *
+     *     "langues": [
+     *       {
+     *         "id_langue_agent": "uuid",
+     *         "id_langue": "uuid",
+     *         "name_langue": "Français"
+     *       },
+     *       {
+     *         "id_langue_agent": "uuid",
+     *         "id_langue": "uuid",
+     *         "name_langue": "Anglais"
+     *       }
+     *     ],
+     *
+     *     "pieces": [
+     *       {
+     *         "id_piece": "uuid",
+     *         "recto_piece": "/storage/pieces/recto.jpg",
+     *         "verso_piece": "/storage/pieces/verso.jpg",
+     *         "created_at": "2026-01-01 10:00:00"
+     *       }
+     *     ],
+     *
+     *     "permis": [
+     *       {
+     *         "id_permis": "uuid",
+     *         "recto_permis": "/storage/permis/recto.jpg",
+     *         "verso_permis": "/storage/permis/verso.jpg",
+     *         "created_at": "2026-01-01 10:00:00"
+     *       }
+     *     ],
+     *
+     *     "diplomes": [
+     *       {
+     *         "id_photo_diplome": "uuid",
+     *         "recto_diplome": "/storage/diplomes/recto.jpg",
+     *         "verso_diplome": "/storage/diplomes/verso.jpg",
+     *         "created_at": "2026-01-01 10:00:00"
+     *       }
+     *     ]
+     *   }
+     * }
+     */
     public function show(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -23,15 +99,30 @@ class AgentProfileController extends Controller
             ->leftJoin('commune as cm', 'a.commune_id', '=', 'cm.id_commune')
             ->where('a.id_agent', $agent->id_agent)
             ->select(
-                'a.id_agent','a.genre_agent','a.name_agent','a.lastname_agent',
-                'a.profession_agent','a.naissance_agent','a.email_agent','a.phone_agent',
-                'a.image_agent','a.longitude_agent','a.latitude_agent',
-                'a.experience_mission_agent','a.permis_agent','a.status',
-                'd.id_diplome','d.name_diplome',
-                'e.id_etude','e.name_etude',
-                'c.id_city','c.name_city',
-                'co.id_country','co.name as name_country',
-                'cm.id_commune','cm.name_commune'
+                'a.id_agent',
+                'a.genre_agent',
+                'a.name_agent',
+                'a.lastname_agent',
+                'a.profession_agent',
+                'a.naissance_agent',
+                'a.email_agent',
+                'a.phone_agent',
+                'a.image_agent',
+                'a.longitude_agent',
+                'a.latitude_agent',
+                'a.experience_mission_agent',
+                'a.permis_agent',
+                'a.status',
+                'd.id_diplome',
+                'd.name_diplome',
+                'e.id_etude',
+                'e.name_etude',
+                'c.id_city',
+                'c.name_city',
+                'co.id_country',
+                'co.name as name_country',
+                'cm.id_commune',
+                'cm.name_commune'
             )
             ->first();
 
@@ -49,6 +140,40 @@ class AgentProfileController extends Controller
     }
 
     // PUT /api/agent/profile
+    /**
+     * Mettre à jour le profil de l’agent
+     *
+     * @group Profil Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam genre_agent string Exemple: M
+     * @bodyParam name_agent string Exemple: Yapi
+     * @bodyParam lastname_agent string Exemple: Theodore
+     * @bodyParam profession_agent string Exemple: Développeur
+     * @bodyParam naissance_agent date Exemple: 1995-01-01
+     * @bodyParam phone_agent string Exemple: 0700000000
+     * @bodyParam longitude_agent string nullable
+     * @bodyParam latitude_agent string nullable
+     * @bodyParam experience_mission_agent string oui ou non
+     * @bodyParam permis_agent string oui ou non
+     * @bodyParam city_id uuid
+     * @bodyParam country_id uuid
+     * @bodyParam commune_id uuid
+     * @bodyParam diplome_id uuid
+     * @bodyParam etude_id uuid
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Profil mis à jour avec succès",
+     *   "data": {
+     *     "id_agent": "uuid",
+     *     "name_agent": "Yapi",
+     *     "lastname_agent": "Theodore",
+     *     "phone_agent": "0700000000"
+     *   }
+     * }
+     */
     public function update(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -82,6 +207,23 @@ class AgentProfileController extends Controller
     }
 
     // POST /api/agent/profile/image
+    /**
+     * Upload photo de profil
+     *
+     * @group Profil Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam image file required Image (jpeg, png, jpg, webp, max 2MB)
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Photo mise à jour",
+     *   "data": {
+     *     "image_agent": "http://localhost/storage/agents/photos/photo.jpg"
+     *   }
+     * }
+     */
     public function uploadImage(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -137,8 +279,8 @@ class AgentPieceController extends Controller
         $id = (string) Str::uuid();
         DB::table('pieces')->insert([
             'id_piece'   => $id,
-            'recto_piece'=> $recto,
-            'verso_piece'=> $verso,
+            'recto_piece' => $recto,
+            'verso_piece' => $verso,
             'agent_id'   => $agent->id_agent,
             'created_at' => now(),
             'updated_at' => now(),

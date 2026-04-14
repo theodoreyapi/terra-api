@@ -11,6 +11,34 @@ use Illuminate\Support\Str;
 class BusinessAuthController extends Controller
 {
     // POST /api/business/register
+    /**
+     * Inscription d’un business
+     *
+     * @group Auth Business
+     *
+     * @bodyParam name_business string required Nom du responsable. Example: Yapi
+     * @bodyParam prenom_business string required Prénom du responsable. Example: Theodore
+     * @bodyParam phone_business string required Numéro de téléphone. Example: 0700000000
+     * @bodyParam email_business string required Email personnel. Example: yapi@mail.com
+     * @bodyParam entreprise_business string required Nom de l’entreprise. Example: YapiTech
+     * @bodyParam email_entreprise_business string required Email entreprise. Example: contact@yapitech.com
+     * @bodyParam password string required Mot de passe (min 6 caractères)
+     * @bodyParam password_confirmation string required Confirmation du mot de passe
+     * @bodyParam secteur_id string required UUID du secteur
+     * @bodyParam city_id string required UUID de la ville
+     * @bodyParam country_id string required UUID du pays
+     * @bodyParam localisation_entreprise_business string Localisation de l’entreprise
+     * @bodyParam description_business string Description
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Compte business créé. Vérifiez votre téléphone/email.",
+     *   "data": {
+     *     "id_business": "uuid",
+     *     "email_business": "yapi@mail.com"
+     *   }
+     * }
+     */
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -61,6 +89,36 @@ class BusinessAuthController extends Controller
     }
 
     // POST /api/business/login
+    /**
+     * Connexion business
+     *
+     * @group Auth Business
+     *
+     * @bodyParam email_business string required Email. Example: yapi@mail.com
+     * @bodyParam password string required Mot de passe
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "token": "token_string",
+     *   "data": {
+     *     "id_business": "uuid",
+     *     "name_business": "Yapi",
+     *     "entreprise_business": "YapiTech",
+     *     "email_business": "yapi@mail.com",
+     *     "status": "active"
+     *   }
+     * }
+     *
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Identifiants incorrects"
+     * }
+     *
+     * @response 403 {
+     *   "success": false,
+     *   "message": "Compte inactif ou suspendu"
+     * }
+     */
     public function login(Request $request)
     {
         $validated = $request->validate([
@@ -98,6 +156,18 @@ class BusinessAuthController extends Controller
     }
 
     // POST /api/business/logout
+    /**
+     * Déconnexion business
+     *
+     * @group Auth Business
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Déconnexion réussie"
+     * }
+     */
     public function logout(Request $request)
     {
         $business = $request->attributes->get('business');
@@ -110,6 +180,23 @@ class BusinessAuthController extends Controller
     }
 
     // POST /api/business/send-otp
+    /**
+     * Envoyer un OTP
+     *
+     * @group Auth Business
+     *
+     * @bodyParam phone_business string required Numéro de téléphone. Example: 0700000000
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "OTP envoyé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Numéro introuvable"
+     * }
+     */
     public function sendOtp(Request $request)
     {
         $request->validate(['phone_business' => 'required|string']);
@@ -131,6 +218,25 @@ class BusinessAuthController extends Controller
     }
 
     // POST /api/business/verify-otp
+    /**
+     * Vérifier OTP
+     *
+     * @group Auth Business
+     *
+     * @bodyParam phone_business string required Numéro. Example: 0700000000
+     * @bodyParam otp integer required Code OTP. Example: 123456
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "OTP vérifié",
+     *   "token": "token_string"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "OTP invalide"
+     * }
+     */
     public function verifyOtp(Request $request)
     {
         $request->validate([
@@ -158,6 +264,23 @@ class BusinessAuthController extends Controller
     }
 
     // POST /api/business/forgot-password
+    /**
+     * Mot de passe oublié
+     *
+     * @group Auth Business
+     *
+     * @bodyParam email_business string required Email. Example: yapi@mail.com
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Code de réinitialisation envoyé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Email introuvable"
+     * }
+     */
     public function forgotPassword(Request $request)
     {
         $request->validate(['email_business' => 'required|email']);
@@ -179,6 +302,26 @@ class BusinessAuthController extends Controller
     }
 
     // POST /api/business/reset-password
+    /**
+     * Réinitialiser le mot de passe
+     *
+     * @group Auth Business
+     *
+     * @bodyParam email_business string required Email
+     * @bodyParam otp integer required Code OTP
+     * @bodyParam password string required Nouveau mot de passe
+     * @bodyParam password_confirmation string required Confirmation
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Mot de passe réinitialisé avec succès"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Code invalide ou expiré"
+     * }
+     */
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -206,6 +349,32 @@ class BusinessAuthController extends Controller
     }
 
     // GET /api/business/me
+    /**
+     * Profil du business connecté
+     *
+     * @group Business Profil
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id_business": "uuid",
+     *     "name_business": "Yapi",
+     *     "prenom_business": "Theodore",
+     *     "phone_business": "0700000000",
+     *     "email_business": "yapi@mail.com",
+     *     "entreprise_business": "YapiTech",
+     *     "email_entreprise_business": "contact@yapitech.com",
+     *     "localisation_entreprise_business": "Abidjan",
+     *     "description_business": "Entreprise tech",
+     *     "status": "active",
+     *     "name_city": "Abidjan",
+     *     "name_country": "Côte d'Ivoire",
+     *     "name_secteur": "Technologie"
+     *   }
+     * }
+     */
     public function me(Request $request)
     {
         $business = $request->attributes->get('business');
@@ -216,11 +385,19 @@ class BusinessAuthController extends Controller
             ->leftJoin('secteur_activite as s', 'b.secteur_id', '=', 's.id_secteur')
             ->where('b.id_business', $business->id_business)
             ->select(
-                'b.id_business','b.name_business','b.prenom_business',
-                'b.phone_business','b.email_business','b.entreprise_business',
-                'b.email_entreprise_business','b.localisation_entreprise_business',
-                'b.description_business','b.status',
-                'c.name_city','co.name as name_country','s.name_secteur'
+                'b.id_business',
+                'b.name_business',
+                'b.prenom_business',
+                'b.phone_business',
+                'b.email_business',
+                'b.entreprise_business',
+                'b.email_entreprise_business',
+                'b.localisation_entreprise_business',
+                'b.description_business',
+                'b.status',
+                'c.name_city',
+                'co.name as name_country',
+                's.name_secteur'
             )
             ->first();
 
@@ -228,6 +405,31 @@ class BusinessAuthController extends Controller
     }
 
     // PUT /api/business/me
+    /**
+     * Mettre à jour le profil business
+     *
+     * @group Business Profil
+     *
+     * @authenticated
+     *
+     * @bodyParam name_business string Nom
+     * @bodyParam prenom_business string Prénom
+     * @bodyParam phone_business string Téléphone
+     * @bodyParam localisation_entreprise_business string Localisation
+     * @bodyParam description_business string Description
+     * @bodyParam city_id string UUID ville
+     * @bodyParam country_id string UUID pays
+     * @bodyParam secteur_id string UUID secteur
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Profil mis à jour",
+     *   "data": {
+     *     "id_business": "uuid",
+     *     "name_business": "Yapi"
+     *   }
+     * }
+     */
     public function update(Request $request)
     {
         $business = $request->attributes->get('business');

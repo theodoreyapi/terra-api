@@ -12,6 +12,37 @@ use Illuminate\Validation\ValidationException;
 class AgentAuthController extends Controller
 {
     // POST /api/agent/register
+    /**
+     * Inscription d’un agent
+     *
+     * @group Auth Agent
+     *
+     * @bodyParam genre_agent string required Genre (M ou F). Exemple: M
+     * @bodyParam name_agent string required Nom. Exemple: Yapi
+     * @bodyParam lastname_agent string required Prénom. Exemple: Theodore
+     * @bodyParam profession_agent string required Profession. Exemple: Développeur
+     * @bodyParam naissance_agent date required Date de naissance. Exemple: 1995-01-01
+     * @bodyParam email_agent string required Email. Exemple: test@mail.com
+     * @bodyParam phone_agent string required Téléphone. Exemple: 0700000000
+     * @bodyParam password string required Mot de passe (min 6 caractères)
+     * @bodyParam password_confirmation string required Confirmation mot de passe
+     * @bodyParam diplome_id uuid required ID diplôme
+     * @bodyParam etude_id uuid required ID étude
+     * @bodyParam city_id uuid required ID ville
+     * @bodyParam country_id uuid required ID pays
+     * @bodyParam commune_id uuid required ID commune
+     * @bodyParam experience_mission_agent string required oui ou non
+     * @bodyParam permis_agent string required oui ou non
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Compte créé. Veuillez vérifier votre téléphone.",
+     *   "data": {
+     *     "id_agent": "uuid",
+     *     "email_agent": "test@mail.com"
+     *   }
+     * }
+     */
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -78,6 +109,32 @@ class AgentAuthController extends Controller
     }
 
     // POST /api/agent/login
+    /**
+     * Connexion agent
+     *
+     * @group Auth Agent
+     *
+     * @bodyParam email_agent string required Email
+     * @bodyParam password string required Mot de passe
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "token": "random_token",
+     *   "data": {
+     *     "id_agent": "uuid",
+     *     "name_agent": "Yapi",
+     *     "lastname_agent": "Theodore",
+     *     "email_agent": "test@mail.com",
+     *     "phone_agent": "0700000000",
+     *     "status": "active"
+     *   }
+     * }
+     *
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Identifiants incorrects"
+     * }
+     */
     public function login(Request $request)
     {
         $validated = $request->validate([
@@ -107,7 +164,7 @@ class AgentAuthController extends Controller
             'data'    => [
                 'id_agent'      => $agent->id_agent,
                 'name_agent'    => $agent->name_agent,
-                'lastname_agent'=> $agent->lastname_agent,
+                'lastname_agent' => $agent->lastname_agent,
                 'email_agent'   => $agent->email_agent,
                 'phone_agent'   => $agent->phone_agent,
                 'status'        => $agent->status,
@@ -116,6 +173,18 @@ class AgentAuthController extends Controller
     }
 
     // POST /api/agent/logout
+    /**
+     * Déconnexion agent
+     *
+     * @group Auth Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Déconnexion réussie"
+     * }
+     */
     public function logout(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -128,6 +197,23 @@ class AgentAuthController extends Controller
     }
 
     // POST /api/agent/send-otp
+    /**
+     * Envoyer OTP
+     *
+     * @group Auth Agent
+     *
+     * @bodyParam phone_agent string required Numéro téléphone
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "OTP envoyé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Numéro introuvable"
+     * }
+     */
     public function sendOtp(Request $request)
     {
         $request->validate(['phone_agent' => 'required|string']);
@@ -149,6 +235,25 @@ class AgentAuthController extends Controller
     }
 
     // POST /api/agent/verify-otp
+    /**
+     * Vérifier OTP
+     *
+     * @group Auth Agent
+     *
+     * @bodyParam phone_agent string required
+     * @bodyParam otp integer required
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "OTP vérifié",
+     *   "token": "random_token"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "OTP invalide"
+     * }
+     */
     public function verifyOtp(Request $request)
     {
         $request->validate([
@@ -177,6 +282,23 @@ class AgentAuthController extends Controller
     }
 
     // POST /api/agent/forgot-password
+    /**
+     * Mot de passe oublié
+     *
+     * @group Auth Agent
+     *
+     * @bodyParam email_agent string required
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Code de réinitialisation envoyé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Email introuvable"
+     * }
+     */
     public function forgotPassword(Request $request)
     {
         $request->validate(['email_agent' => 'required|email']);
@@ -198,6 +320,26 @@ class AgentAuthController extends Controller
     }
 
     // POST /api/agent/reset-password
+    /**
+     * Réinitialiser mot de passe
+     *
+     * @group Auth Agent
+     *
+     * @bodyParam email_agent string required
+     * @bodyParam otp integer required
+     * @bodyParam password string required
+     * @bodyParam password_confirmation string required
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Mot de passe réinitialisé avec succès"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Code invalide ou expiré"
+     * }
+     */
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -225,6 +367,34 @@ class AgentAuthController extends Controller
     }
 
     // GET /api/agent/me
+    /**
+     * Profil de l’agent connecté
+     *
+     * @group Auth Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id_agent": "uuid",
+     *     "name_agent": "Yapi",
+     *     "lastname_agent": "Theodore",
+     *     "email_agent": "test@mail.com",
+     *     "name_city": "Abidjan",
+     *     "name_country": "Côte d'Ivoire",
+     *     "name_commune": "Yopougon",
+     *     "name_diplome": "Master",
+     *     "name_etude": "Licence",
+     *     "langues": [
+     *       {
+     *         "id_langue_agent": "uuid",
+     *         "name_langue": "Français"
+     *       }
+     *     ]
+     *   }
+     * }
+     */
     public function me(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -238,8 +408,11 @@ class AgentAuthController extends Controller
             ->where('a.id_agent', $agent->id_agent)
             ->select(
                 'a.*',
-                'd.name_diplome', 'e.name_etude',
-                'c.name_city', 'co.name as name_country', 'cm.name_commune'
+                'd.name_diplome',
+                'e.name_etude',
+                'c.name_city',
+                'co.name as name_country',
+                'cm.name_commune'
             )
             ->first();
 
@@ -255,6 +428,27 @@ class AgentAuthController extends Controller
     }
 
     // PUT /api/agent/me
+    /**
+     * Mettre à jour le profil
+     *
+     * @group Auth Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam name_agent string
+     * @bodyParam lastname_agent string
+     * @bodyParam phone_agent string
+     * @bodyParam profession_agent string
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Profil mis à jour",
+     *   "data": {
+     *     "id_agent": "uuid",
+     *     "name_agent": "Yapi"
+     *   }
+     * }
+     */
     public function update(Request $request)
     {
         $agent = $request->attributes->get('agent');

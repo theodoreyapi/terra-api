@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->uuid('id_wallet')->primary();
-    $table->decimal('solde', 12, 2)->default(0);
-    $table->string('devise', 10)->default('XOF');
-    $table->foreignUuid('agent_id')->references('id_agent')->on('agents')->onDelete('cascade');
-    $table->timestamps();
-    $table->unique('agent_id'); // 1 wallet par agent
+            $table->decimal('solde', 12, 2)->default(0);
+            $table->string('devise', 10)->default('XOF');
+            $table->foreignUuid('agent_id')->references('id_agent')->on('agents')->onDelete('cascade');
+            $table->timestamps();
+            $table->unique('agent_id'); // 1 wallet par agent
         });
     }
 

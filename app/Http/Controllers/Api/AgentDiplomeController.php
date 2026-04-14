@@ -11,6 +11,33 @@ use Illuminate\Support\Str;
 class AgentDiplomeController extends Controller
 {
     // GET /api/agent/diplomes
+    /**
+     * Liste des diplômes de l’agent
+     *
+     * @group Diplômes Agent
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_photo_diplome": "uuid",
+     *       "recto_diplome": "agents/diplomes/recto.jpg",
+     *       "verso_diplome": "agents/diplomes/verso.jpg",
+     *       "recto_url": "http://localhost/storage/agents/diplomes/recto.jpg",
+     *       "verso_url": "http://localhost/storage/agents/diplomes/verso.jpg",
+     *       "created_at": "2026-01-01 10:00:00",
+     *       "updated_at": "2026-01-01 10:00:00"
+     *     }
+     *   ]
+     * }
+     *
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Non authentifié"
+     * }
+     */
     public function index(Request $request)
     {
         $agent    = $request->attributes->get('agent');
@@ -27,6 +54,34 @@ class AgentDiplomeController extends Controller
     }
 
     // POST /api/agent/diplomes
+    /**
+     * Ajouter un diplôme
+     *
+     * @group Diplômes Agent
+     *
+     * @authenticated
+     *
+     * @bodyParam recto_diplome file required Image ou PDF (jpeg, png, jpg, pdf, max 3MB)
+     * @bodyParam verso_diplome file required Image ou PDF (jpeg, png, jpg, pdf, max 3MB)
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Diplôme ajouté",
+     *   "data": {
+     *     "id_photo_diplome": "uuid",
+     *     "recto_diplome": "agents/diplomes/recto.jpg",
+     *     "verso_diplome": "agents/diplomes/verso.jpg",
+     *     "recto_url": "http://localhost/storage/agents/diplomes/recto.jpg",
+     *     "verso_url": "http://localhost/storage/agents/diplomes/verso.jpg",
+     *     "created_at": "2026-01-01 10:00:00"
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Erreur de validation"
+     * }
+     */
     public function store(Request $request)
     {
         $agent = $request->attributes->get('agent');
@@ -62,6 +117,41 @@ class AgentDiplomeController extends Controller
     }
 
     // PUT /api/agent/diplomes/{id}
+    /**
+     * Modifier un diplôme
+     *
+     * @group Diplômes Agent
+     *
+     * @authenticated
+     *
+     * @urlParam id string required ID du diplôme. Exemple: uuid
+     *
+     * @bodyParam recto_diplome file Image ou PDF
+     * @bodyParam verso_diplome file Image ou PDF
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Diplôme mis à jour",
+     *   "data": {
+     *     "id_photo_diplome": "uuid",
+     *     "recto_diplome": "agents/diplomes/new_recto.jpg",
+     *     "verso_diplome": "agents/diplomes/new_verso.jpg",
+     *     "recto_url": "http://localhost/storage/agents/diplomes/new_recto.jpg",
+     *     "verso_url": "http://localhost/storage/agents/diplomes/new_verso.jpg",
+     *     "updated_at": "2026-01-01 12:00:00"
+     *   }
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Diplôme introuvable"
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Aucun fichier fourni"
+     * }
+     */
     public function update(Request $request, string $id)
     {
         $agent   = $request->attributes->get('agent');

@@ -24,6 +24,27 @@ class BusinessModePaiementController extends Controller
     }
 
     // GET /api/business/missions/{id}/modes-paiement
+    /**
+     * Lister les modes de paiement d'une mission
+     *
+     * Récupère tous les moyens de paiement configurés pour une mission.
+     *
+     * @group Business Paiements
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission. Example: 8f3a-uuid
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": [
+     *     {
+     *       "id_mode_paiemnt": "uuid",
+     *       "provider": "wave",
+     *       "actif": true
+     *     }
+     *   ]
+     * }
+     */
     public function index(Request $request, string $id)
     {
         $business = $request->attributes->get('business');
@@ -38,6 +59,34 @@ class BusinessModePaiementController extends Controller
     }
 
     // POST /api/business/missions/{id}/modes-paiement
+    /**
+     * Ajouter un mode de paiement
+     *
+     * Permet d’ajouter un provider de paiement à une mission.
+     *
+     * @group Business Paiements
+     * @authenticated
+     *
+     * @urlParam id string required ID de la mission
+     *
+     * @bodyParam provider string required Fournisseur de paiement. Example: wave. Enum: wave,orange,moov,mtn,visa
+     * @bodyParam actif boolean Activer immédiatement le mode. Example: true
+     *
+     * @response 201 {
+     *   "success": true,
+     *   "message": "Mode de paiement ajouté",
+     *   "data": {
+     *     "id_mode_paiemnt": "uuid",
+     *     "provider": "wave",
+     *     "actif": true
+     *   }
+     * }
+     *
+     * @response 422 {
+     *   "success": false,
+     *   "message": "Ce mode de paiement existe déjà"
+     * }
+     */
     public function store(Request $request, string $id)
     {
         $business = $request->attributes->get('business');
@@ -79,6 +128,27 @@ class BusinessModePaiementController extends Controller
     }
 
     // DELETE /api/business/missions/{id}/modes-paiement/{mid}
+    /**
+     * Supprimer un mode de paiement
+     *
+     * Supprime un provider de paiement d’une mission.
+     *
+     * @group Business Paiements
+     * @authenticated
+     *
+     * @urlParam id string required ID mission
+     * @urlParam mid string required ID mode de paiement
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Mode de paiement supprimé"
+     * }
+     *
+     * @response 404 {
+     *   "success": false,
+     *   "message": "Mode de paiement introuvable"
+     * }
+     */
     public function destroy(Request $request, string $id, string $mid)
     {
         $business = $request->attributes->get('business');
