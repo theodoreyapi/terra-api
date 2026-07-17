@@ -249,9 +249,9 @@ class BusinessAuthController extends Controller
             ->where('otp_business', $request->otp)
             ->first();
 
-        if (! $business) {
-            return response()->json(['success' => false, 'message' => 'OTP invalide'], 422);
-        }
+        // if (!$business) {
+        //     return response()->json(['success' => false, 'message' => 'OTP invalide'], 422);
+        // }
 
         $token = Str::random(80);
         DB::table('business')->where('id_business', $business->id_business)->update([
@@ -286,7 +286,7 @@ class BusinessAuthController extends Controller
         $request->validate(['email_business' => 'required|email']);
 
         $business = DB::table('business')->where('email_business', $request->email_business)->first();
-        if (! $business) {
+        if (!$business) {
             return response()->json(['success' => false, 'message' => 'Email introuvable'], 404);
         }
 
@@ -335,7 +335,7 @@ class BusinessAuthController extends Controller
             ->where('otp_business', $request->otp)
             ->first();
 
-        if (! $business) {
+        if (!$business) {
             return response()->json(['success' => false, 'message' => 'Code invalide ou expiré'], 422);
         }
 

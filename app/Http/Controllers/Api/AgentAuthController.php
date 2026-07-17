@@ -477,4 +477,13 @@ class AgentAuthController extends Controller
             'data'    => DB::table('agents')->where('id_agent', $agent->id_agent)->first(),
         ]);
     }
+
+
+    public function deleteAccount($number)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'Profil supprimé',
+        ]);
+    }
 }

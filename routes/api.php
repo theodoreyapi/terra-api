@@ -56,6 +56,7 @@ Route::prefix('internal/terra/v1')->group(function () {
         Route::post('verify-otp',      [AgentAuthController::class, 'verifyOtp']);
         Route::post('forgot-password', [AgentAuthController::class, 'forgotPassword']);
         Route::post('reset-password',  [AgentAuthController::class, 'resetPassword']);
+        Route::get('delete/{number}',  [AgentAuthController::class, 'deleteAccount']); // Pour tests uniquement, à supprimer en prod
 
         // Routes protégées (token requis)
         // Route::middleware('auth.agent')->group(function () {
