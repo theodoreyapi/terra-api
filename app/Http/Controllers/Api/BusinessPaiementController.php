@@ -137,6 +137,7 @@ class BusinessPaiementController extends Controller
      *
      * @bodyParam provider string required Provider de paiement. Example: orange. Enum: wave,orange,mtn,moov,visa
      * @bodyParam reference_paiement string Référence de paiement globale. Example: GROUP_TXN_001
+     * @bodyParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -155,12 +156,12 @@ class BusinessPaiementController extends Controller
      */
     public function payerTous(Request $request, string $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $validated = $request->validate([
             'provider'           => 'required|in:wave,orange,mtn,moov,visa',
             'reference_paiement' => 'nullable|string|max:100',
+            'business_id' => 'required|string',
         ]);
 
         // Agents actifs avec rémunération définie et pas encore payés
@@ -182,7 +183,7 @@ class BusinessPaiementController extends Controller
         $ignorés     = 0;
         $montantTotal = 0;
 
-        DB::transaction(function () use ($agents, $id, $business, $validated, &$payes, &$ignorés, &$montantTotal) {
+        DB::transaction(function () use ($agents, $id, $validated, &$payes, &$ignorés, &$montantTotal) {
             foreach ($agents as $agent) {
                 // Ne pas payer deux fois la même mission
                 $dejaPaye = DB::table('paiements_agents')
@@ -204,7 +205,7 @@ class BusinessPaiementController extends Controller
                     'reference_paiement' => $validated['reference_paiement'] ?? null,
                     'mission_id'         => $id,
                     'agent_id'           => $agent->agent_id,
-                    'business_id'        => $business->id_business,
+                    'business_id'        => $validated['business_id'],
                     'created_at'         => now(),
                     'updated_at'         => now(),
                 ]);
@@ -260,6 +261,7 @@ class BusinessPaiementController extends Controller
      * @urlParam id string required ID de la mission
      *
      * @queryParam statut string Filtrer par statut. Example: complete
+     * @queryParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -282,8 +284,7 @@ class BusinessPaiementController extends Controller
      */
     public function historique(Request $request, string $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $query = DB::table('paiements_agents as p')
             ->join('agents as a', 'p.agent_id', '=', 'a.id_agent')

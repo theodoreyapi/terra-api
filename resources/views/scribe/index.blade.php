@@ -155,8 +155,8 @@
                     <a href="#business-formulaires">Business Formulaires</a>
                 </li>
                                     <ul id="tocify-subheader-business-formulaires" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="business-formulaires-GETapi-internal-terra-v1-business-missions--id--formulaires">
-                                <a href="#business-formulaires-GETapi-internal-terra-v1-business-missions--id--formulaires">Liste des formulaires d’une mission</a>
+                                                    <li class="tocify-item level-2" data-unique="business-formulaires-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-">
+                                <a href="#business-formulaires-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-">Liste des formulaires d’une mission</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="business-formulaires-POSTapi-internal-terra-v1-business-missions--id--formulaires">
                                 <a href="#business-formulaires-POSTapi-internal-terra-v1-business-missions--id--formulaires">Créer un formulaire pour une mission</a>
@@ -208,8 +208,8 @@
                                                                                 <li class="tocify-item level-2" data-unique="business-missions-POSTapi-internal-terra-v1-business-missions">
                                 <a href="#business-missions-POSTapi-internal-terra-v1-business-missions">Créer une mission</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="business-missions-GETapi-internal-terra-v1-business-missions--id-">
-                                <a href="#business-missions-GETapi-internal-terra-v1-business-missions--id-">Détail d’une mission</a>
+                                                                                <li class="tocify-item level-2" data-unique="business-missions-GETapi-internal-terra-v1-business-missions--id---idBusiness-">
+                                <a href="#business-missions-GETapi-internal-terra-v1-business-missions--id---idBusiness-">Détail d’une mission</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="business-missions-PUTapi-internal-terra-v1-business-missions--id-">
                                 <a href="#business-missions-PUTapi-internal-terra-v1-business-missions--id-">Mettre à jour une mission</a>
@@ -277,17 +277,17 @@
                     <a href="#business-profil">Business Profil</a>
                 </li>
                                     <ul id="tocify-subheader-business-profil" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="business-profil-GETapi-internal-terra-v1-business-me">
-                                <a href="#business-profil-GETapi-internal-terra-v1-business-me">Profil du business connecté</a>
+                                                    <li class="tocify-item level-2" data-unique="business-profil-GETapi-internal-terra-v1-business-me--idBusiness-">
+                                <a href="#business-profil-GETapi-internal-terra-v1-business-me--idBusiness-">Profil du business connecté</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="business-profil-PUTapi-internal-terra-v1-business-me">
-                                <a href="#business-profil-PUTapi-internal-terra-v1-business-me">Mettre à jour le profil business</a>
+                                                                                <li class="tocify-item level-2" data-unique="business-profil-PUTapi-internal-terra-v1-business-me--idBUsiness-">
+                                <a href="#business-profil-PUTapi-internal-terra-v1-business-me--idBUsiness-">Mettre à jour le profil business</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="business-profil-GETapi-internal-terra-v1-business-profile">
-                                <a href="#business-profil-GETapi-internal-terra-v1-business-profile">Profil complet du business</a>
+                                                                                <li class="tocify-item level-2" data-unique="business-profil-GETapi-internal-terra-v1-business-profile--idBusiness-">
+                                <a href="#business-profil-GETapi-internal-terra-v1-business-profile--idBusiness-">Profil complet du business</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="business-profil-PUTapi-internal-terra-v1-business-profile">
-                                <a href="#business-profil-PUTapi-internal-terra-v1-business-profile">Mettre à jour le profil business</a>
+                                                                                <li class="tocify-item level-2" data-unique="business-profil-PUTapi-internal-terra-v1-business-profile--idBusiness-">
+                                <a href="#business-profil-PUTapi-internal-terra-v1-business-profile--idBusiness-">Mettre à jour le profil business</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="business-profil-POSTapi-internal-terra-v1-business-profile-logo">
                                 <a href="#business-profil-POSTapi-internal-terra-v1-business-profile-logo">Upload du logo business</a>
@@ -345,6 +345,9 @@
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
                                 <a href="#endpoints-GETapi-user">GET api/user</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-internal-terra-v1-agent-delete--number-">
+                                <a href="#endpoints-GETapi-internal-terra-v1-agent-delete--number-">GET api/internal/terra/v1/agent/delete/{number}</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-internal-terra-v1-agent-profile">
                                 <a href="#endpoints-GETapi-internal-terra-v1-agent-profile">GET api/internal/terra/v1/agent/profile</a>
@@ -560,7 +563,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: April 14, 2026</li>
+        <li>Last updated: August 17, 2026</li>
     </ul>
 </div>
 
@@ -2059,11 +2062,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"name_agent\": \"architecto\",
     \"lastname_agent\": \"architecto\",
     \"profession_agent\": \"architecto\",
-    \"naissance_agent\": \"2026-04-14T22:58:39\",
+    \"naissance_agent\": \"2026-08-17T23:57:57\",
     \"phone_agent\": \"architecto\",
     \"longitude_agent\": \"architecto\",
     \"latitude_agent\": \"architecto\",
-    \"experience_mission_agent\": \"non\",
+    \"experience_mission_agent\": \"oui\",
     \"permis_agent\": \"non\",
     \"city_id\": \"a4855dc5-0acb-33c3-b921-f4291f719ca0\",
     \"country_id\": \"c90237e9-ced5-3af6-88ea-84aeaa148878\",
@@ -2086,11 +2089,11 @@ let body = {
     "name_agent": "architecto",
     "lastname_agent": "architecto",
     "profession_agent": "architecto",
-    "naissance_agent": "2026-04-14T22:58:39",
+    "naissance_agent": "2026-08-17T23:57:57",
     "phone_agent": "architecto",
     "longitude_agent": "architecto",
     "latitude_agent": "architecto",
-    "experience_mission_agent": "non",
+    "experience_mission_agent": "oui",
     "permis_agent": "non",
     "city_id": "a4855dc5-0acb-33c3-b921-f4291f719ca0",
     "country_id": "c90237e9-ced5-3af6-88ea-84aeaa148878",
@@ -2236,10 +2239,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="naissance_agent"                data-endpoint="PUTapi-internal-terra-v1-agent-me"
-               value="2026-04-14T22:58:39"
+               value="2026-08-17T23:57:57"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-04-14T22:58:39</code></p>
+<p>Must be a valid date. Example: <code>2026-08-17T23:57:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_agent</code></b>&nbsp;&nbsp;
@@ -2284,10 +2287,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="experience_mission_agent"                data-endpoint="PUTapi-internal-terra-v1-agent-me"
-               value="non"
+               value="oui"
                data-component="body">
     <br>
-<p>Example: <code>non</code></p>
+<p>Example: <code>oui</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>oui</code></li> <li><code>non</code></li></ul>
         </div>
@@ -3668,7 +3671,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     ],
     \"annee_options\": [
         \"architecto\"
-    ]
+    ],
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -3699,7 +3703,8 @@ let body = {
     ],
     "annee_options": [
         "architecto"
-    ]
+    ],
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -3938,6 +3943,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Options années</p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="POSTapi-internal-terra-v1-business-formulaires--fid--champs"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>UUID Obligatoire Example: <code>architecto</code></p>
+        </div>
         </form>
 
                     <h2 id="business-champs-PUTapi-internal-terra-v1-business-formulaires--fid--champs--cid-">Mettre à jour un champ</h2>
@@ -3973,6 +3990,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     ],
     \"annee_options\": [
         \"architecto\"
+    ],
+    \"business_id\": [
+        \"architecto\"
     ]
 }"
 </code></pre></div>
@@ -4003,6 +4023,9 @@ let body = {
         "architecto"
     ],
     "annee_options": [
+        "architecto"
+    ],
+    "business_id": [
         "architecto"
     ]
 };
@@ -4252,6 +4275,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id[0]"                data-endpoint="PUTapi-internal-terra-v1-business-formulaires--fid--champs--cid-"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="business_id[1]"                data-endpoint="PUTapi-internal-terra-v1-business-formulaires--fid--champs--cid-"
+               data-component="body">
+    <br>
+<p>string</p>
+        </div>
         </form>
 
                     <h2 id="business-champs-DELETEapi-internal-terra-v1-business-formulaires--fid--champs--cid-">Supprimer un champ</h2>
@@ -4409,6 +4446,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID champ Example: <code>architecto</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="DELETEapi-internal-terra-v1-business-formulaires--fid--champs--cid-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>ID business (Ex: /api/business/formulaires/{fid}/champs/{cid}?businessid={id}) Example: <code>architecto</code></p>
+            </div>
                     </form>
 
                     <h2 id="business-champs-PUTapi-internal-terra-v1-business-formulaires--fid--champs-ordre">Réordonner les champs d’un formulaire</h2>
@@ -4431,7 +4480,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"ordre\": [
         \"architecto\"
-    ]
+    ],
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -4449,7 +4499,8 @@ const headers = {
 let body = {
     "ordre": [
         "architecto"
-    ]
+    ],
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -4599,6 +4650,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     </div>
                                     </details>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="PUTapi-internal-terra-v1-business-formulaires--fid--champs-ordre"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>ID Business Example: <code>architecto</code></p>
+        </div>
         </form>
 
                     <h2 id="business-champs-PUTapi-internal-terra-v1-business-champs--cid--parametres">Mettre à jour les paramètres d’un champ</h2>
@@ -4621,7 +4684,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"rendre_facultatif\": false,
     \"rendre_obligatoire\": false,
-    \"gestion_appelite\": false
+    \"gestion_appelite\": false,
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -4639,7 +4703,8 @@ const headers = {
 let body = {
     "rendre_facultatif": false,
     "rendre_obligatoire": false,
-    "gestion_appelite": false
+    "gestion_appelite": false,
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -4829,13 +4894,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>false</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="PUTapi-internal-terra-v1-business-champs--cid--parametres"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>UUID (Ex: /api/business/champs/{cid}/parametres?idbusiness={id}) Example: <code>architecto</code></p>
+        </div>
         </form>
 
                 <h1 id="business-formulaires">Business Formulaires</h1>
 
     
 
-                                <h2 id="business-formulaires-GETapi-internal-terra-v1-business-missions--id--formulaires">Liste des formulaires d’une mission</h2>
+                                <h2 id="business-formulaires-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-">Liste des formulaires d’une mission</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4843,20 +4920,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-internal-terra-v1-business-missions--id--formulaires">
+<span id="example-requests-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/formulaires" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/formulaires/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/internal/terra/v1/business/missions/architecto/formulaires"
+    "http://localhost/api/internal/terra/v1/business/missions/architecto/formulaires/architecto"
 );
 
 const headers = {
@@ -4872,7 +4949,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-internal-terra-v1-business-missions--id--formulaires">
+<span id="example-responses-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -4910,43 +4987,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-internal-terra-v1-business-missions--id--formulaires" hidden>
+<span id="execution-results-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-internal-terra-v1-business-missions--id--formulaires"></span>:
+                id="execution-response-status-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-missions--id--formulaires"
+    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-internal-terra-v1-business-missions--id--formulaires" hidden>
+<span id="execution-error-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-missions--id--formulaires">
+    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-internal-terra-v1-business-missions--id--formulaires" data-method="GET"
-      data-path="api/internal/terra/v1/business/missions/{id}/formulaires"
+<form id="form-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-" data-method="GET"
+      data-path="api/internal/terra/v1/business/missions/{id}/formulaires/{idBusiness}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-missions--id--formulaires', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-internal-terra-v1-business-missions--id--formulaires"
-                    onclick="tryItOut('GETapi-internal-terra-v1-business-missions--id--formulaires');">Try it out ⚡
+                    id="btn-tryout-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
+                    onclick="tryItOut('GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-internal-terra-v1-business-missions--id--formulaires"
-                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-missions--id--formulaires');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
+                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-internal-terra-v1-business-missions--id--formulaires"
+                    id="btn-executetryout-GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -4954,7 +5031,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/internal/terra/v1/business/missions/{id}/formulaires</code></b>
+            <b><code>api/internal/terra/v1/business/missions/{id}/formulaires/{idBusiness}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -4963,7 +5040,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires"
+                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -4975,7 +5052,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires"
+                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -4988,11 +5065,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires"
+                              name="id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
                value="architecto"
                data-component="url">
     <br>
-<p>ID de la mission Example: <code>architecto</code></p>
+<p>ID du business Example: <code>architecto</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>idBusiness</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="idBusiness"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--formulaires--idBusiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -5530,7 +5619,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="architecto"
                data-component="url">
     <br>
-<p>ID formulaire Example: <code>architecto</code></p>
+<p>ID business (Ex: /api/business/missions/{id}/formulaires/{fid}?idbusiness={idbusiness}) Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -5552,7 +5641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents?statut=architecto" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents?statut=architecto&amp;business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -5564,6 +5653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 const params = {
     "statut": "architecto",
+    "business_id": "architecto",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -5711,6 +5801,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Filtrer par statut (invite, accepte, refuse, actif) Example: <code>architecto</code></p>
             </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--agents"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
                 </form>
 
                     <h2 id="business-mission-agents-POSTapi-internal-terra-v1-business-missions--id--agents-inviter">Inviter des agents à une mission</h2>
@@ -5735,7 +5837,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
         \"architecto\"
     ],
     \"remuneration\": 4326.41688,
-    \"objectif_agent\": 16
+    \"objectif_agent\": 16,
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -5755,7 +5858,8 @@ let body = {
         "architecto"
     ],
     "remuneration": 4326.41688,
-    "objectif_agent": 16
+    "objectif_agent": 16,
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -5911,6 +6015,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Objectif par agent Example: <code>16</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="POSTapi-internal-terra-v1-business-missions--id--agents-inviter"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
         </form>
 
                     <h2 id="business-mission-agents-GETapi-internal-terra-v1-business-missions--id--agents--aid-">Détail d’un agent dans une mission</h2>
@@ -5927,7 +6043,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -5936,6 +6052,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -6081,7 +6203,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID agent Example: <code>architecto</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--agents--aid-"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                     <h2 id="business-mission-agents-DELETEapi-internal-terra-v1-business-missions--id--agents--aid-">Retirer un agent d’une mission</h2>
 
@@ -6097,7 +6232,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto" \
+    "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -6106,6 +6241,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -6238,7 +6379,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID agent Example: <code>architecto</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="DELETEapi-internal-terra-v1-business-missions--id--agents--aid-"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                     <h2 id="business-mission-agents-PUTapi-internal-terra-v1-business-missions--id--agents--aid--objectif">Mettre à jour l’objectif d’un agent</h2>
 
@@ -6259,7 +6413,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"objectif_agent\": 16,
-    \"remuneration\": 4326.41688
+    \"remuneration\": 4326.41688,
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -6276,7 +6431,8 @@ const headers = {
 
 let body = {
     "objectif_agent": 16,
-    "remuneration": 4326.41688
+    "remuneration": 4326.41688,
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -6424,6 +6580,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Rémunération Example: <code>4326.41688</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id--agents--aid--objectif"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
         </form>
 
                     <h2 id="business-mission-agents-GETapi-internal-terra-v1-business-missions--id--agents--aid--statistiques">Statistiques d’un agent dans une mission</h2>
@@ -6440,7 +6608,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto/statistiques" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto/statistiques?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -6449,6 +6617,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto/statistiques"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -6585,7 +6759,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID agent Example: <code>architecto</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--agents--aid--statistiques"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                     <h2 id="business-mission-agents-GETapi-internal-terra-v1-business-missions--id--agents--aid--reponses">Liste des réponses d’un agent</h2>
 
@@ -6601,7 +6788,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto/reponses" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto/reponses?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -6610,6 +6797,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/architecto/agents/architecto/reponses"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -6741,7 +6934,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID agent Example: <code>architecto</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--agents--aid--reponses"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                 <h1 id="business-missions">Business Missions</h1>
 
@@ -6761,7 +6967,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions?statut=actif" \
+    --get "http://localhost/api/internal/terra/v1/business/missions" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -6770,12 +6976,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions"
 );
-
-const params = {
-    "statut": "actif",
-};
-Object.keys(params)
-    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -6887,8 +7087,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
-                                    <div style="padding-left: 28px; clear: unset;">
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>statut</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
@@ -6896,11 +7096,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <input type="text" style="display: none"
                               name="statut"                data-endpoint="GETapi-internal-terra-v1-business-missions"
                value="actif"
-               data-component="query">
+               data-component="url">
     <br>
 <p>Filtrer par statut (brouillon, actif, termine). Example: <code>actif</code></p>
             </div>
-                </form>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id_business</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id_business"                data-endpoint="GETapi-internal-terra-v1-business-missions"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>UUID ID du business Example: <code>architecto</code></p>
+            </div>
+                    </form>
 
                     <h2 id="business-missions-POSTapi-internal-terra-v1-business-missions">Créer une mission</h2>
 
@@ -7279,7 +7491,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="business-missions-GETapi-internal-terra-v1-business-missions--id-">Détail d’une mission</h2>
+                    <h2 id="business-missions-GETapi-internal-terra-v1-business-missions--id---idBusiness-">Détail d’une mission</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -7287,20 +7499,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-internal-terra-v1-business-missions--id-">
+<span id="example-requests-GETapi-internal-terra-v1-business-missions--id---idBusiness-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/internal/terra/v1/business/missions/architecto"
+    "http://localhost/api/internal/terra/v1/business/missions/architecto/architecto"
 );
 
 const headers = {
@@ -7316,7 +7528,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-internal-terra-v1-business-missions--id-">
+<span id="example-responses-GETapi-internal-terra-v1-business-missions--id---idBusiness-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -7347,43 +7559,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-internal-terra-v1-business-missions--id-" hidden>
+<span id="execution-results-GETapi-internal-terra-v1-business-missions--id---idBusiness-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-internal-terra-v1-business-missions--id-"></span>:
+                id="execution-response-status-GETapi-internal-terra-v1-business-missions--id---idBusiness-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-missions--id-"
+    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-missions--id---idBusiness-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-internal-terra-v1-business-missions--id-" hidden>
+<span id="execution-error-GETapi-internal-terra-v1-business-missions--id---idBusiness-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-missions--id-">
+    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-missions--id---idBusiness-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-internal-terra-v1-business-missions--id-" data-method="GET"
-      data-path="api/internal/terra/v1/business/missions/{id}"
+<form id="form-GETapi-internal-terra-v1-business-missions--id---idBusiness-" data-method="GET"
+      data-path="api/internal/terra/v1/business/missions/{id}/{idBusiness}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-missions--id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-missions--id---idBusiness-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-internal-terra-v1-business-missions--id-"
-                    onclick="tryItOut('GETapi-internal-terra-v1-business-missions--id-');">Try it out ⚡
+                    id="btn-tryout-GETapi-internal-terra-v1-business-missions--id---idBusiness-"
+                    onclick="tryItOut('GETapi-internal-terra-v1-business-missions--id---idBusiness-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-internal-terra-v1-business-missions--id-"
-                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-missions--id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-internal-terra-v1-business-missions--id---idBusiness-"
+                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-missions--id---idBusiness-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-internal-terra-v1-business-missions--id-"
+                    id="btn-executetryout-GETapi-internal-terra-v1-business-missions--id---idBusiness-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -7391,7 +7603,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/internal/terra/v1/business/missions/{id}</code></b>
+            <b><code>api/internal/terra/v1/business/missions/{id}/{idBusiness}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -7400,7 +7612,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-missions--id-"
+                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-missions--id---idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -7412,7 +7624,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-missions--id-"
+                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-missions--id---idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -7425,11 +7637,23 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id-"
+                              name="id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id---idBusiness-"
                value="architecto"
                data-component="url">
     <br>
-<p>ID mission Example: <code>architecto</code></p>
+<p>ID business Example: <code>architecto</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>idBusiness</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="idBusiness"                data-endpoint="GETapi-internal-terra-v1-business-missions--id---idBusiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
             </div>
                     </form>
 
@@ -7452,14 +7676,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"type_mission\": \"b\",
-    \"cible\": \"entreprises\",
+    \"cible\": \"personnes\",
     \"nom_application\": \"n\",
     \"logo_url\": \"http:\\/\\/crooks.biz\\/et-fugiat-sunt-nihil-accusantium\",
     \"couleur_primaire\": \"nikhway\",
     \"couleur_secondaire\": \"kcmyuwp\",
     \"dark_mode\": true,
-    \"date_debut\": \"2026-04-14T22:58:40\",
-    \"date_fin\": \"2026-04-14T22:58:40\",
+    \"date_debut\": \"2026-08-17T23:57:57\",
+    \"date_fin\": \"2026-08-17T23:57:57\",
     \"country_id\": \"7212c28d-f9ab-3dd7-af8a-06584a0d4cb7\",
     \"city_id\": \"0a9446d3-4070-3757-8926-67a9d2adbc0e\",
     \"commune_id\": \"c68e0767-6220-31fb-a489-61093ff79529\",
@@ -7483,14 +7707,14 @@ const headers = {
 
 let body = {
     "type_mission": "b",
-    "cible": "entreprises",
+    "cible": "personnes",
     "nom_application": "n",
     "logo_url": "http:\/\/crooks.biz\/et-fugiat-sunt-nihil-accusantium",
     "couleur_primaire": "nikhway",
     "couleur_secondaire": "kcmyuwp",
     "dark_mode": true,
-    "date_debut": "2026-04-14T22:58:40",
-    "date_fin": "2026-04-14T22:58:40",
+    "date_debut": "2026-08-17T23:57:57",
+    "date_fin": "2026-08-17T23:57:57",
     "country_id": "7212c28d-f9ab-3dd7-af8a-06584a0d4cb7",
     "city_id": "0a9446d3-4070-3757-8926-67a9d2adbc0e",
     "commune_id": "c68e0767-6220-31fb-a489-61093ff79529",
@@ -7644,10 +7868,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="cible"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id-"
-               value="entreprises"
+               value="personnes"
                data-component="body">
     <br>
-<p>Example: <code>entreprises</code></p>
+<p>Example: <code>personnes</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>entreprises</code></li> <li><code>personnes</code></li></ul>
         </div>
@@ -7728,10 +7952,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_debut"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id-"
-               value="2026-04-14T22:58:40"
+               value="2026-08-17T23:57:57"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-04-14T22:58:40</code></p>
+<p>Must be a valid date. Example: <code>2026-08-17T23:57:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date_fin</code></b>&nbsp;&nbsp;
@@ -7740,10 +7964,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_fin"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id-"
-               value="2026-04-14T22:58:40"
+               value="2026-08-17T23:57:57"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2026-04-14T22:58:40</code></p>
+<p>Must be a valid date. Example: <code>2026-08-17T23:57:57</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>country_id</code></b>&nbsp;&nbsp;
@@ -8468,7 +8692,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/modes-paiement" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/modes-paiement?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -8477,6 +8701,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/modes-paiement"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -8593,7 +8823,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID de la mission. Example: <code>8f3a-uuid</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--modes-paiement"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                     <h2 id="business-paiements-POSTapi-internal-terra-v1-business-missions--id--modes-paiement">Ajouter un mode de paiement</h2>
 
@@ -8614,7 +8857,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"provider\": \"wave. Enum: wave,orange,moov,mtn,visa\",
-    \"actif\": true
+    \"actif\": true,
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -8631,7 +8875,8 @@ const headers = {
 
 let body = {
     "provider": "wave. Enum: wave,orange,moov,mtn,visa",
-    "actif": true
+    "actif": true,
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -8787,6 +9032,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </label>
     <br>
 <p>Activer immédiatement le mode. Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="POSTapi-internal-terra-v1-business-missions--id--modes-paiement"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -8945,6 +9202,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID mode de paiement Example: <code>architecto</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="DELETEapi-internal-terra-v1-business-missions--id--modes-paiement--mid-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
                     </form>
 
                     <h2 id="business-paiements-POSTapi-internal-terra-v1-business-missions--id--agents-payer-tous">Paiement groupé des agents</h2>
@@ -8966,7 +9235,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"provider\": \"orange. Enum: wave,orange,mtn,moov,visa\",
-    \"reference_paiement\": \"GROUP_TXN_001\"
+    \"reference_paiement\": \"GROUP_TXN_001\",
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -8983,7 +9253,8 @@ const headers = {
 
 let body = {
     "provider": "orange. Enum: wave,orange,mtn,moov,visa",
-    "reference_paiement": "GROUP_TXN_001"
+    "reference_paiement": "GROUP_TXN_001",
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -9129,6 +9400,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Référence de paiement globale. Example: <code>GROUP_TXN_001</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="POSTapi-internal-terra-v1-business-missions--id--agents-payer-tous"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -9358,7 +9641,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/paiements?statut=complete" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/paiements?statut=complete&amp;business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -9370,6 +9653,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 const params = {
     "statut": "complete",
+    "business_id": "architecto",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -9510,6 +9794,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Filtrer par statut. Example: <code>complete</code></p>
             </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--paiements"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
                 </form>
 
                 <h1 id="business-plans">Business Plans</h1>
@@ -9530,7 +9826,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/plans" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/plans?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -9539,6 +9835,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/plans"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -9656,7 +9958,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID de la mission. Example: <code>8f3a-uuid</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--plans"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                     <h2 id="business-plans-POSTapi-internal-terra-v1-business-missions--id--plans">Créer un plan</h2>
 
@@ -9678,7 +9993,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"montant\": 10000,
     \"duree\": 30,
-    \"unite_duree\": \"jours\"
+    \"unite_duree\": \"jours\",
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -9696,7 +10012,8 @@ const headers = {
 let body = {
     "montant": 10000,
     "duree": 30,
-    "unite_duree": "jours"
+    "unite_duree": "jours",
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -9846,6 +10163,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Unité de durée. Example: <code>jours</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="POSTapi-internal-terra-v1-business-missions--id--plans"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
         </form>
 
                     <h2 id="business-plans-PUTapi-internal-terra-v1-business-missions--id--plans--pid-">Mettre à jour un plan</h2>
@@ -9868,7 +10197,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"montant\": 15000,
     \"duree\": 60,
-    \"unite_duree\": \"mois\"
+    \"unite_duree\": \"mois\",
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -9886,7 +10216,8 @@ const headers = {
 let body = {
     "montant": 15000,
     "duree": 60,
-    "unite_duree": "mois"
+    "unite_duree": "mois",
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -10042,6 +10373,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Unité de durée. Example: <code>mois</code></p>
         </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id--plans--pid-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
+        </div>
         </form>
 
                     <h2 id="business-plans-DELETEapi-internal-terra-v1-business-missions--id--plans--pid-">Supprimer un plan</h2>
@@ -10060,7 +10403,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-bash">curl --request DELETE \
     "http://localhost/api/internal/terra/v1/business/missions/architecto/plans/architecto" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"pid\": \"architecto\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -10073,10 +10420,14 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "pid": "architecto"
+};
 
 fetch(url, {
     method: "DELETE",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -10199,13 +10550,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID plan Example: <code>architecto</code></p>
             </div>
-                    </form>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>pid</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="pid"                data-endpoint="DELETEapi-internal-terra-v1-business-missions--id--plans--pid-"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>ID plan Example: <code>architecto</code></p>
+        </div>
+        </form>
 
                 <h1 id="business-profil">Business Profil</h1>
 
     
 
-                                <h2 id="business-profil-GETapi-internal-terra-v1-business-me">Profil du business connecté</h2>
+                                <h2 id="business-profil-GETapi-internal-terra-v1-business-me--idBusiness-">Profil du business connecté</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -10213,20 +10577,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-internal-terra-v1-business-me">
+<span id="example-requests-GETapi-internal-terra-v1-business-me--idBusiness-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/me" \
+    --get "http://localhost/api/internal/terra/v1/business/me/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/internal/terra/v1/business/me"
+    "http://localhost/api/internal/terra/v1/business/me/architecto"
 );
 
 const headers = {
@@ -10242,7 +10606,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-internal-terra-v1-business-me">
+<span id="example-responses-GETapi-internal-terra-v1-business-me--idBusiness-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -10268,43 +10632,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-internal-terra-v1-business-me" hidden>
+<span id="execution-results-GETapi-internal-terra-v1-business-me--idBusiness-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-internal-terra-v1-business-me"></span>:
+                id="execution-response-status-GETapi-internal-terra-v1-business-me--idBusiness-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-me"
+    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-me--idBusiness-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-internal-terra-v1-business-me" hidden>
+<span id="execution-error-GETapi-internal-terra-v1-business-me--idBusiness-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-me">
+    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-me--idBusiness-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-internal-terra-v1-business-me" data-method="GET"
-      data-path="api/internal/terra/v1/business/me"
+<form id="form-GETapi-internal-terra-v1-business-me--idBusiness-" data-method="GET"
+      data-path="api/internal/terra/v1/business/me/{idBusiness}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-me', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-me--idBusiness-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-internal-terra-v1-business-me"
-                    onclick="tryItOut('GETapi-internal-terra-v1-business-me');">Try it out ⚡
+                    id="btn-tryout-GETapi-internal-terra-v1-business-me--idBusiness-"
+                    onclick="tryItOut('GETapi-internal-terra-v1-business-me--idBusiness-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-internal-terra-v1-business-me"
-                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-me');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-internal-terra-v1-business-me--idBusiness-"
+                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-me--idBusiness-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-internal-terra-v1-business-me"
+                    id="btn-executetryout-GETapi-internal-terra-v1-business-me--idBusiness-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -10312,7 +10676,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/internal/terra/v1/business/me</code></b>
+            <b><code>api/internal/terra/v1/business/me/{idBusiness}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -10321,7 +10685,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-me"
+                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-me--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -10333,15 +10697,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-me"
+                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-me--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>idBusiness</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="idBusiness"                data-endpoint="GETapi-internal-terra-v1-business-me--idBusiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>ID mission Example: <code>architecto</code></p>
+            </div>
+                    </form>
 
-                    <h2 id="business-profil-PUTapi-internal-terra-v1-business-me">Mettre à jour le profil business</h2>
+                    <h2 id="business-profil-PUTapi-internal-terra-v1-business-me--idBUsiness-">Mettre à jour le profil business</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -10349,13 +10726,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-PUTapi-internal-terra-v1-business-me">
+<span id="example-requests-PUTapi-internal-terra-v1-business-me--idBUsiness-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/internal/terra/v1/business/me" \
+    "http://localhost/api/internal/terra/v1/business/me/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -10373,7 +10750,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/internal/terra/v1/business/me"
+    "http://localhost/api/internal/terra/v1/business/me/architecto"
 );
 
 const headers = {
@@ -10400,7 +10777,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-internal-terra-v1-business-me">
+<span id="example-responses-PUTapi-internal-terra-v1-business-me--idBUsiness-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -10416,43 +10793,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-PUTapi-internal-terra-v1-business-me" hidden>
+<span id="execution-results-PUTapi-internal-terra-v1-business-me--idBUsiness-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-internal-terra-v1-business-me"></span>:
+                id="execution-response-status-PUTapi-internal-terra-v1-business-me--idBUsiness-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-internal-terra-v1-business-me"
+    <pre class="json"><code id="execution-response-content-PUTapi-internal-terra-v1-business-me--idBUsiness-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-internal-terra-v1-business-me" hidden>
+<span id="execution-error-PUTapi-internal-terra-v1-business-me--idBUsiness-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-internal-terra-v1-business-me">
+    <pre><code id="execution-error-message-PUTapi-internal-terra-v1-business-me--idBUsiness-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-internal-terra-v1-business-me" data-method="PUT"
-      data-path="api/internal/terra/v1/business/me"
+<form id="form-PUTapi-internal-terra-v1-business-me--idBUsiness-" data-method="PUT"
+      data-path="api/internal/terra/v1/business/me/{idBUsiness}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-internal-terra-v1-business-me', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-internal-terra-v1-business-me--idBUsiness-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-internal-terra-v1-business-me"
-                    onclick="tryItOut('PUTapi-internal-terra-v1-business-me');">Try it out ⚡
+                    id="btn-tryout-PUTapi-internal-terra-v1-business-me--idBUsiness-"
+                    onclick="tryItOut('PUTapi-internal-terra-v1-business-me--idBUsiness-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-internal-terra-v1-business-me"
-                    onclick="cancelTryOut('PUTapi-internal-terra-v1-business-me');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTapi-internal-terra-v1-business-me--idBUsiness-"
+                    onclick="cancelTryOut('PUTapi-internal-terra-v1-business-me--idBUsiness-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-internal-terra-v1-business-me"
+                    id="btn-executetryout-PUTapi-internal-terra-v1-business-me--idBUsiness-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -10460,7 +10837,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/internal/terra/v1/business/me</code></b>
+            <b><code>api/internal/terra/v1/business/me/{idBUsiness}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -10469,7 +10846,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="Content-Type"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -10481,20 +10858,45 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="Accept"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>idBUsiness</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="idBUsiness"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>ID Business Example: <code>architecto</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name_business</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="name_business"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="name_business"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10506,7 +10908,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="prenom_business"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="prenom_business"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10518,7 +10920,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="phone_business"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="phone_business"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10530,7 +10932,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="localisation_entreprise_business"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="localisation_entreprise_business"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10542,7 +10944,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="description_business"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="description_business"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10554,7 +10956,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="city_id"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="city_id"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10566,7 +10968,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="country_id"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="country_id"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10578,7 +10980,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="secteur_id"                data-endpoint="PUTapi-internal-terra-v1-business-me"
+                              name="secteur_id"                data-endpoint="PUTapi-internal-terra-v1-business-me--idBUsiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10586,7 +10988,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="business-profil-GETapi-internal-terra-v1-business-profile">Profil complet du business</h2>
+                    <h2 id="business-profil-GETapi-internal-terra-v1-business-profile--idBusiness-">Profil complet du business</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -10594,20 +10996,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-GETapi-internal-terra-v1-business-profile">
+<span id="example-requests-GETapi-internal-terra-v1-business-profile--idBusiness-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/profile" \
+    --get "http://localhost/api/internal/terra/v1/business/profile/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/internal/terra/v1/business/profile"
+    "http://localhost/api/internal/terra/v1/business/profile/architecto"
 );
 
 const headers = {
@@ -10623,7 +11025,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-internal-terra-v1-business-profile">
+<span id="example-responses-GETapi-internal-terra-v1-business-profile--idBusiness-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -10655,43 +11057,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-internal-terra-v1-business-profile" hidden>
+<span id="execution-results-GETapi-internal-terra-v1-business-profile--idBusiness-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-internal-terra-v1-business-profile"></span>:
+                id="execution-response-status-GETapi-internal-terra-v1-business-profile--idBusiness-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-profile"
+    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-business-profile--idBusiness-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-internal-terra-v1-business-profile" hidden>
+<span id="execution-error-GETapi-internal-terra-v1-business-profile--idBusiness-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-profile">
+    <pre><code id="execution-error-message-GETapi-internal-terra-v1-business-profile--idBusiness-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-internal-terra-v1-business-profile" data-method="GET"
-      data-path="api/internal/terra/v1/business/profile"
+<form id="form-GETapi-internal-terra-v1-business-profile--idBusiness-" data-method="GET"
+      data-path="api/internal/terra/v1/business/profile/{idBusiness}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-profile', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-business-profile--idBusiness-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-internal-terra-v1-business-profile"
-                    onclick="tryItOut('GETapi-internal-terra-v1-business-profile');">Try it out ⚡
+                    id="btn-tryout-GETapi-internal-terra-v1-business-profile--idBusiness-"
+                    onclick="tryItOut('GETapi-internal-terra-v1-business-profile--idBusiness-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-internal-terra-v1-business-profile"
-                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-profile');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-internal-terra-v1-business-profile--idBusiness-"
+                    onclick="cancelTryOut('GETapi-internal-terra-v1-business-profile--idBusiness-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-internal-terra-v1-business-profile"
+                    id="btn-executetryout-GETapi-internal-terra-v1-business-profile--idBusiness-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -10699,7 +11101,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/internal/terra/v1/business/profile</code></b>
+            <b><code>api/internal/terra/v1/business/profile/{idBusiness}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -10708,7 +11110,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-profile"
+                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-business-profile--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -10720,15 +11122,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-profile"
+                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-business-profile--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>idBusiness</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="idBusiness"                data-endpoint="GETapi-internal-terra-v1-business-profile--idBusiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="GETapi-internal-terra-v1-business-profile--idBusiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>ID Business Example: <code>architecto</code></p>
+            </div>
+                    </form>
 
-                    <h2 id="business-profil-PUTapi-internal-terra-v1-business-profile">Mettre à jour le profil business</h2>
+                    <h2 id="business-profil-PUTapi-internal-terra-v1-business-profile--idBusiness-">Mettre à jour le profil business</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -10736,13 +11163,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 
 
-<span id="example-requests-PUTapi-internal-terra-v1-business-profile">
+<span id="example-requests-PUTapi-internal-terra-v1-business-profile--idBusiness-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/internal/terra/v1/business/profile" \
+    "http://localhost/api/internal/terra/v1/business/profile/architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -10760,7 +11187,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/internal/terra/v1/business/profile"
+    "http://localhost/api/internal/terra/v1/business/profile/architecto"
 );
 
 const headers = {
@@ -10787,7 +11214,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-PUTapi-internal-terra-v1-business-profile">
+<span id="example-responses-PUTapi-internal-terra-v1-business-profile--idBusiness-">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -10804,43 +11231,43 @@ fetch(url, {
 }</code>
  </pre>
     </span>
-<span id="execution-results-PUTapi-internal-terra-v1-business-profile" hidden>
+<span id="execution-results-PUTapi-internal-terra-v1-business-profile--idBusiness-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-PUTapi-internal-terra-v1-business-profile"></span>:
+                id="execution-response-status-PUTapi-internal-terra-v1-business-profile--idBusiness-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-internal-terra-v1-business-profile"
+    <pre class="json"><code id="execution-response-content-PUTapi-internal-terra-v1-business-profile--idBusiness-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-PUTapi-internal-terra-v1-business-profile" hidden>
+<span id="execution-error-PUTapi-internal-terra-v1-business-profile--idBusiness-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-internal-terra-v1-business-profile">
+    <pre><code id="execution-error-message-PUTapi-internal-terra-v1-business-profile--idBusiness-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-PUTapi-internal-terra-v1-business-profile" data-method="PUT"
-      data-path="api/internal/terra/v1/business/profile"
+<form id="form-PUTapi-internal-terra-v1-business-profile--idBusiness-" data-method="PUT"
+      data-path="api/internal/terra/v1/business/profile/{idBusiness}"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-internal-terra-v1-business-profile', this);">
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-internal-terra-v1-business-profile--idBusiness-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-internal-terra-v1-business-profile"
-                    onclick="tryItOut('PUTapi-internal-terra-v1-business-profile');">Try it out ⚡
+                    id="btn-tryout-PUTapi-internal-terra-v1-business-profile--idBusiness-"
+                    onclick="tryItOut('PUTapi-internal-terra-v1-business-profile--idBusiness-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-internal-terra-v1-business-profile"
-                    onclick="cancelTryOut('PUTapi-internal-terra-v1-business-profile');" hidden>Cancel 🛑
+                    id="btn-canceltryout-PUTapi-internal-terra-v1-business-profile--idBusiness-"
+                    onclick="cancelTryOut('PUTapi-internal-terra-v1-business-profile--idBusiness-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-internal-terra-v1-business-profile"
+                    id="btn-executetryout-PUTapi-internal-terra-v1-business-profile--idBusiness-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -10848,7 +11275,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/internal/terra/v1/business/profile</code></b>
+            <b><code>api/internal/terra/v1/business/profile/{idBusiness}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -10857,7 +11284,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="Content-Type"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
@@ -10869,20 +11296,33 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="Accept"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>idBusiness</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="idBusiness"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name_business</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="name_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="name_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10894,7 +11334,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="prenom_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="prenom_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10906,7 +11346,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="phone_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="phone_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10918,7 +11358,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="localisation_entreprise_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="localisation_entreprise_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10930,7 +11370,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="description_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="description_business"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10942,7 +11382,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="city_id"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="city_id"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10954,7 +11394,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="country_id"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="country_id"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10966,7 +11406,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="secteur_id"                data-endpoint="PUTapi-internal-terra-v1-business-profile"
+                              name="secteur_id"                data-endpoint="PUTapi-internal-terra-v1-business-profile--idBusiness-"
                value="architecto"
                data-component="body">
     <br>
@@ -10991,7 +11431,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/business/profile/logo" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "logo=@C:\Users\theod\AppData\Local\Temp\php62B9.tmp" </code></pre></div>
+    --form "business_id=architecto"\
+    --form "logo=@C:\Users\theod\AppData\Local\Temp\phpD894.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -11005,6 +11446,7 @@ const headers = {
 };
 
 const body = new FormData();
+body.append('business_id', 'architecto');
 body.append('logo', document.querySelector('input[name="logo"]').files[0]);
 
 fetch(url, {
@@ -11122,7 +11564,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image (jpeg, png, jpg, svg, webp, max 2MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php62B9.tmp</code></p>
+<p>Image (jpeg, png, jpg, svg, webp, max 2MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD894.tmp</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>id</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="POSTapi-internal-terra-v1-business-profile-logo"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>string UUID required ID business Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -11144,7 +11598,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/reponses/export" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/architecto/reponses/export?business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -11153,6 +11607,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/internal/terra/v1/business/missions/architecto/reponses/export"
 );
+
+const params = {
+    "business_id": "architecto",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -11262,7 +11722,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID mission Example: <code>architecto</code></p>
             </div>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--reponses-export"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                </form>
 
                     <h2 id="business-reponses-GETapi-internal-terra-v1-business-missions--id--reponses">Lister les réponses d&#039;une mission</h2>
 
@@ -11278,7 +11751,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/reponses?statut=valide&amp;agent_id=uuid-agent&amp;formulaire_id=uuid-form" \
+    --get "http://localhost/api/internal/terra/v1/business/missions/8f3a-uuid/reponses?statut=valide&amp;agent_id=uuid-agent&amp;formulaire_id=uuid-form&amp;business_id=architecto" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -11292,6 +11765,7 @@ const params = {
     "statut": "valide",
     "agent_id": "uuid-agent",
     "formulaire_id": "uuid-form",
+    "business_id": "architecto",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -11452,6 +11926,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Filtrer par formulaire. Example: <code>uuid-form</code></p>
             </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--reponses"
+               value="architecto"
+               data-component="query">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
                 </form>
 
                     <h2 id="business-reponses-GETapi-internal-terra-v1-business-missions--id--reponses--rid-">Détail d&#039;une réponse</h2>
@@ -11606,6 +12092,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID réponse Example: <code>architecto</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="GETapi-internal-terra-v1-business-missions--id--reponses--rid-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
                     </form>
 
                     <h2 id="business-reponses-PUTapi-internal-terra-v1-business-missions--id--reponses--rid--valider">Valider une réponse</h2>
@@ -11753,6 +12251,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>ID réponse Example: <code>architecto</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id--reponses--rid--valider"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
                     </form>
 
                     <h2 id="business-reponses-PUTapi-internal-terra-v1-business-missions--id--reponses--rid--rejeter">Rejeter une réponse</h2>
@@ -11773,7 +12283,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"motif\": \"Données incorrectes\"
+    \"motif\": \"Données incorrectes\",
+    \"business_id\": \"architecto\"
 }"
 </code></pre></div>
 
@@ -11789,7 +12300,8 @@ const headers = {
 };
 
 let body = {
-    "motif": "Données incorrectes"
+    "motif": "Données incorrectes",
+    "business_id": "architecto"
 };
 
 fetch(url, {
@@ -11920,6 +12432,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>Motif du rejet. Example: <code>Données incorrectes</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>business_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="business_id"                data-endpoint="PUTapi-internal-terra-v1-business-missions--id--reponses--rid--rejeter"
+               value="architecto"
+               data-component="body">
+    <br>
+<p>Example: <code>architecto</code></p>
         </div>
         </form>
 
@@ -12086,8 +12610,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/diplomes" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "recto_diplome=@C:\Users\theod\AppData\Local\Temp\php6041.tmp" \
-    --form "verso_diplome=@C:\Users\theod\AppData\Local\Temp\php6042.tmp" </code></pre></div>
+    --form "recto_diplome=@C:\Users\theod\AppData\Local\Temp\phpD764.tmp" \
+    --form "verso_diplome=@C:\Users\theod\AppData\Local\Temp\phpD765.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -12224,7 +12748,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php6041.tmp</code></p>
+<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD764.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verso_diplome</code></b>&nbsp;&nbsp;
@@ -12236,7 +12760,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php6042.tmp</code></p>
+<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD765.tmp</code></p>
         </div>
         </form>
 
@@ -12257,8 +12781,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/diplomes/architecto" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "recto_diplome=@C:\Users\theod\AppData\Local\Temp\php6054.tmp" \
-    --form "verso_diplome=@C:\Users\theod\AppData\Local\Temp\php6055.tmp" </code></pre></div>
+    --form "recto_diplome=@C:\Users\theod\AppData\Local\Temp\phpD777.tmp" \
+    --form "verso_diplome=@C:\Users\theod\AppData\Local\Temp\phpD778.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -12418,7 +12942,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\php6054.tmp</code></p>
+<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\phpD777.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verso_diplome</code></b>&nbsp;&nbsp;
@@ -12430,7 +12954,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\php6055.tmp</code></p>
+<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\phpD778.tmp</code></p>
         </div>
         </form>
 
@@ -12822,6 +13346,147 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>application/json</code></p>
             </div>
                         </form>
+
+                    <h2 id="endpoints-GETapi-internal-terra-v1-agent-delete--number-">GET api/internal/terra/v1/agent/delete/{number}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-internal-terra-v1-agent-delete--number-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/internal/terra/v1/agent/delete/architecto" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/internal/terra/v1/agent/delete/architecto"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-internal-terra-v1-agent-delete--number-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Profil supprim&eacute;&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-internal-terra-v1-agent-delete--number-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-internal-terra-v1-agent-delete--number-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-internal-terra-v1-agent-delete--number-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-internal-terra-v1-agent-delete--number-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-internal-terra-v1-agent-delete--number-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-internal-terra-v1-agent-delete--number-" data-method="GET"
+      data-path="api/internal/terra/v1/agent/delete/{number}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-internal-terra-v1-agent-delete--number-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-internal-terra-v1-agent-delete--number-"
+                    onclick="tryItOut('GETapi-internal-terra-v1-agent-delete--number-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-internal-terra-v1-agent-delete--number-"
+                    onclick="cancelTryOut('GETapi-internal-terra-v1-agent-delete--number-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-internal-terra-v1-agent-delete--number-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/internal/terra/v1/agent/delete/{number}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-internal-terra-v1-agent-delete--number-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-internal-terra-v1-agent-delete--number-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>number</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="number"                data-endpoint="GETapi-internal-terra-v1-agent-delete--number-"
+               value="architecto"
+               data-component="url">
+    <br>
+<p>Example: <code>architecto</code></p>
+            </div>
+                    </form>
 
                     <h2 id="endpoints-GETapi-internal-terra-v1-agent-profile">GET api/internal/terra/v1/agent/profile</h2>
 
@@ -15180,8 +15845,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/permis" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "recto_permis=@C:\Users\theod\AppData\Local\Temp\php5FEB.tmp" \
-    --form "verso_permis=@C:\Users\theod\AppData\Local\Temp\php5FEC.tmp" </code></pre></div>
+    --form "recto_permis=@C:\Users\theod\AppData\Local\Temp\phpD73D.tmp" \
+    --form "verso_permis=@C:\Users\theod\AppData\Local\Temp\phpD73E.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -15318,7 +15983,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php5FEB.tmp</code></p>
+<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD73D.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verso_permis</code></b>&nbsp;&nbsp;
@@ -15330,7 +15995,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php5FEC.tmp</code></p>
+<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD73E.tmp</code></p>
         </div>
         </form>
 
@@ -15351,8 +16016,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/permis/architecto" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "recto_permis=@C:\Users\theod\AppData\Local\Temp\php600E.tmp" \
-    --form "verso_permis=@C:\Users\theod\AppData\Local\Temp\php600F.tmp" </code></pre></div>
+    --form "recto_permis=@C:\Users\theod\AppData\Local\Temp\phpD750.tmp" \
+    --form "verso_permis=@C:\Users\theod\AppData\Local\Temp\phpD751.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -15512,7 +16177,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\php600E.tmp</code></p>
+<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\phpD750.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verso_permis</code></b>&nbsp;&nbsp;
@@ -15524,7 +16189,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\php600F.tmp</code></p>
+<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\phpD751.tmp</code></p>
         </div>
         </form>
 
@@ -15691,8 +16356,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/pieces" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "recto_piece=@C:\Users\theod\AppData\Local\Temp\php5FA4.tmp" \
-    --form "verso_piece=@C:\Users\theod\AppData\Local\Temp\php5FA5.tmp" </code></pre></div>
+    --form "recto_piece=@C:\Users\theod\AppData\Local\Temp\phpD725.tmp" \
+    --form "verso_piece=@C:\Users\theod\AppData\Local\Temp\phpD726.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -15829,7 +16494,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php5FA4.tmp</code></p>
+<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD725.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verso_piece</code></b>&nbsp;&nbsp;
@@ -15841,7 +16506,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php5FA5.tmp</code></p>
+<p>Image ou PDF (jpeg, png, jpg, pdf, max 3MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD726.tmp</code></p>
         </div>
         </form>
 
@@ -15862,8 +16527,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/pieces/architecto" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "recto_piece=@C:\Users\theod\AppData\Local\Temp\php5FB8.tmp" \
-    --form "verso_piece=@C:\Users\theod\AppData\Local\Temp\php5FB9.tmp" </code></pre></div>
+    --form "recto_piece=@C:\Users\theod\AppData\Local\Temp\phpD729.tmp" \
+    --form "verso_piece=@C:\Users\theod\AppData\Local\Temp\phpD72A.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -16023,7 +16688,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\php5FB8.tmp</code></p>
+<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\phpD729.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>verso_piece</code></b>&nbsp;&nbsp;
@@ -16035,7 +16700,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\php5FB9.tmp</code></p>
+<p>Image ou PDF Example: <code>C:\Users\theod\AppData\Local\Temp\phpD72A.tmp</code></p>
         </div>
         </form>
 
@@ -16405,7 +17070,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://localhost/api/internal/terra/v1/agent/profile/image" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "image=@C:\Users\theod\AppData\Local\Temp\php5F62.tmp" </code></pre></div>
+    --form "image=@C:\Users\theod\AppData\Local\Temp\phpD702.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -16526,7 +17191,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Image (jpeg, png, jpg, webp, max 2MB) Example: <code>C:\Users\theod\AppData\Local\Temp\php5F62.tmp</code></p>
+<p>Image (jpeg, png, jpg, webp, max 2MB) Example: <code>C:\Users\theod\AppData\Local\Temp\phpD702.tmp</code></p>
         </div>
         </form>
 

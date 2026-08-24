@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class BusinessMissionController extends Controller
 {
-    // GET /api/business/missions
+    // GET /api/business/missions?id_business={idBusiness}&statut={statut}
     /**
      * Liste des missions du business
      *
@@ -17,7 +17,8 @@ class BusinessMissionController extends Controller
      *
      * @authenticated
      *
-     * @queryParam statut string Filtrer par statut (brouillon, actif, termine). Example: actif
+     * @urlParam statut string Filtrer par statut (brouillon, actif, termine). Example: actif
+     * @urlParam id_business string UUID ID du business
      *
      * @response 200 {
      *   "success": true,
@@ -40,13 +41,13 @@ class BusinessMissionController extends Controller
      */
     public function index(Request $request)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $query = DB::table('missions as m')
             ->leftJoin('country as co', 'm.country_id', '=', 'co.id_country')
             ->leftJoin('city as c', 'm.city_id', '=', 'c.id_city')
             ->leftJoin('commune as cm', 'm.commune_id', '=', 'cm.id_commune')
-            ->where('m.created_by', $business->id_business)
+            ->where('m.created_by', $request->id_business)
             ->select('m.*', 'co.name as pays', 'c.name_city as ville', 'cm.name_commune as commune');
 
         if ($request->has('statut')) {
@@ -101,7 +102,7 @@ class BusinessMissionController extends Controller
      */
     public function store(Request $request)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $validated = $request->validate([
             'type_mission'       => 'required|string|max:50',
@@ -113,9 +114,9 @@ class BusinessMissionController extends Controller
             'dark_mode'          => 'boolean',
             'date_debut'         => 'nullable|date',
             'date_fin'           => 'nullable|date|after_or_equal:date_debut',
-            'country_id'         => 'nullable|uuid|exists:country,id_country',
-            'city_id'            => 'nullable|uuid|exists:city,id_city',
-            'commune_id'         => 'nullable|uuid|exists:commune,id_commune',
+            'country_id'         => 'nullable|uuid',
+            'city_id'            => 'nullable|uuid',
+            'commune_id'         => 'nullable|uuid',
             'objectif_nombre'    => 'nullable|integer|min:1',
             'objectif_duree'     => 'nullable|integer|min:1',
             'objectif_unite'     => 'nullable|in:jours,mois',
@@ -142,7 +143,7 @@ class BusinessMissionController extends Controller
             'objectif_unite'     => $validated['objectif_unite'] ?? null,
             'methode_api'        => $validated['methode_api'] ?? false,
             'statut'             => 'brouillon',
-            'created_by'         => $business->id_business,
+            'created_by'         => $request->id_business,
             'created_at'         => now(),
             'updated_at'         => now(),
         ]);
@@ -154,7 +155,7 @@ class BusinessMissionController extends Controller
         ], 201);
     }
 
-    // GET /api/business/missions/{id}
+    // GET /api/business/missions/{id}/{idbusiness}
     /**
      * Détail d’une mission
      *
@@ -163,6 +164,7 @@ class BusinessMissionController extends Controller
      * @authenticated
      *
      * @urlParam id string required ID mission
+     * @urlParam id string required ID business
      *
      * @response 200 {
      *   "success": true,
@@ -183,16 +185,16 @@ class BusinessMissionController extends Controller
      *   "message": "Mission introuvable"
      * }
      */
-    public function show(Request $request, $id)
+    public function show($id, $idBusiness)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $mission = DB::table('missions as m')
             ->leftJoin('country as co', 'm.country_id', '=', 'co.id_country')
             ->leftJoin('city as c', 'm.city_id', '=', 'c.id_city')
             ->leftJoin('commune as cm', 'm.commune_id', '=', 'cm.id_commune')
             ->where('m.id_mission', $id)
-            ->where('m.created_by', $business->id_business)
+            ->where('m.created_by', $idBusiness)
             ->select('m.*', 'co.name as pays', 'c.name_city as ville', 'cm.name_commune as commune')
             ->first();
 
@@ -236,11 +238,11 @@ class BusinessMissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $mission = DB::table('missions')
             ->where('id_mission', $id)
-            ->where('created_by', $business->id_business)
+            ->where('created_by', $request->id_business)
             ->first();
 
         if (! $mission) {
@@ -300,13 +302,12 @@ class BusinessMissionController extends Controller
      *   "message": "Mission introuvable ou non supprimable (brouillon seulement)"
      * }
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $mission = DB::table('missions')
             ->where('id_mission', $id)
-            ->where('created_by', $business->id_business)
             ->where('statut', 'brouillon')
             ->first();
 
@@ -339,13 +340,12 @@ class BusinessMissionController extends Controller
      *   "message": "Veuillez ajouter au moins un formulaire avant de publier"
      * }
      */
-    public function publier(Request $request, $id)
+    public function publier($id)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $mission = DB::table('missions')
             ->where('id_mission', $id)
-            ->where('created_by', $business->id_business)
             ->where('statut', 'brouillon')
             ->first();
 
@@ -391,13 +391,12 @@ class BusinessMissionController extends Controller
      *   "message": "Mission introuvable ou non active"
      * }
      */
-    public function terminer(Request $request, $id)
+    public function terminer($id)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $mission = DB::table('missions')
             ->where('id_mission', $id)
-            ->where('created_by', $business->id_business)
             ->where('statut', 'actif')
             ->first();
 
@@ -469,13 +468,12 @@ class BusinessMissionController extends Controller
      *   "message": "Mission introuvable"
      * }
      */
-    public function statistiques(Request $request, $id)
+    public function statistiques($id)
     {
-        $business = $request->attributes->get('business');
+        // $business = $request->attributes->get('business');
 
         $mission = DB::table('missions')
             ->where('id_mission', $id)
-            ->where('created_by', $business->id_business)
             ->first();
 
         if (! $mission) {

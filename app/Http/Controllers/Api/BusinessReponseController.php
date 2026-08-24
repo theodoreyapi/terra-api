@@ -36,6 +36,7 @@ class BusinessReponseController extends Controller
      * @queryParam statut string Filtrer par statut. Example: valide
      * @queryParam agent_id string Filtrer par agent. Example: uuid-agent
      * @queryParam formulaire_id string Filtrer par formulaire. Example: uuid-form
+     * @queryParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -54,8 +55,7 @@ class BusinessReponseController extends Controller
      */
     public function index(Request $request, $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $query = DB::table('reponses as r')
             ->leftJoin('agents as a', 'r.agent_id', '=', 'a.id_agent')
@@ -101,6 +101,7 @@ class BusinessReponseController extends Controller
      *
      * @urlParam id string required ID mission
      * @urlParam rid string required ID réponse
+     * @urlParam business_id string required
      *
      * @response 200 {
      *   "success": true,
@@ -116,8 +117,7 @@ class BusinessReponseController extends Controller
      */
     public function show(Request $request, $id, $rid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $reponse = DB::table('reponses as r')
             ->leftJoin('agents as a', 'r.agent_id', '=', 'a.id_agent')
@@ -148,6 +148,7 @@ class BusinessReponseController extends Controller
      *
      * @urlParam id string required ID mission
      * @urlParam rid string required ID réponse
+     * @urlParam business_id string required
      *
      * @response 200 {
      *   "success": true,
@@ -156,8 +157,7 @@ class BusinessReponseController extends Controller
      */
     public function valider(Request $request, $id, $rid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $reponse = DB::table('reponses')
             ->where('id_reponse', $rid)
@@ -190,6 +190,7 @@ class BusinessReponseController extends Controller
      * @urlParam rid string required ID réponse
      *
      * @bodyParam motif string Motif du rejet. Example: Données incorrectes
+     * @bodyParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -198,8 +199,7 @@ class BusinessReponseController extends Controller
      */
     public function rejeter(Request $request, $id, $rid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $request->validate(['motif' => 'nullable|string|max:500']);
 
@@ -232,14 +232,15 @@ class BusinessReponseController extends Controller
      *
      * @urlParam id string required ID mission
      *
+     * @queryParam business_id
+     *
      * @response 200 scenario="Succès" {
      *   "file": "reponses_mission.csv"
      * }
      */
     public function export(Request $request, $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $reponses = DB::table('reponses as r')
             ->leftJoin('agents as a', 'r.agent_id', '=', 'a.id_agent')

@@ -34,6 +34,8 @@ class BusinessModePaiementController extends Controller
      *
      * @urlParam id string required ID de la mission. Example: 8f3a-uuid
      *
+     * @queryParam business_id string
+     *
      * @response 200 {
      *   "success": true,
      *   "data": [
@@ -47,8 +49,7 @@ class BusinessModePaiementController extends Controller
      */
     public function index(Request $request, string $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $modes = DB::table('modes_paiement')
             ->where('mission_id', $id)
@@ -71,6 +72,7 @@ class BusinessModePaiementController extends Controller
      *
      * @bodyParam provider string required Fournisseur de paiement. Example: wave. Enum: wave,orange,moov,mtn,visa
      * @bodyParam actif boolean Activer immédiatement le mode. Example: true
+     * @bodyParam business_id string
      *
      * @response 201 {
      *   "success": true,
@@ -89,8 +91,7 @@ class BusinessModePaiementController extends Controller
      */
     public function store(Request $request, string $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $validated = $request->validate([
             'provider' => 'required|in:wave,orange,moov,mtn,visa',
@@ -138,6 +139,7 @@ class BusinessModePaiementController extends Controller
      *
      * @urlParam id string required ID mission
      * @urlParam mid string required ID mode de paiement
+     * @urlParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -151,8 +153,7 @@ class BusinessModePaiementController extends Controller
      */
     public function destroy(Request $request, string $id, string $mid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $rows = DB::table('modes_paiement')
             ->where('id_mode_paiemnt', $mid)

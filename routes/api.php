@@ -137,16 +137,16 @@ Route::prefix('internal/terra/v1')->group(function () {
 
         // ── Auth / Profil ──────────────────────────
         Route::post('logout',           [BusinessAuthController::class, 'logout']);
-        Route::get('me',                [BusinessAuthController::class, 'me']);
-        Route::put('me',                [BusinessAuthController::class, 'update']);
-        Route::get('profile',           [BusinessProfileController::class, 'show']);
-        Route::put('profile',           [BusinessProfileController::class, 'update']);
+        Route::get('me/{idBusiness}',                [BusinessAuthController::class, 'me']);
+        Route::put('me/{idBUsiness}',                [BusinessAuthController::class, 'update']);
+        Route::get('profile/{idBusiness}',           [BusinessProfileController::class, 'show']);
+        Route::put('profile/{idBusiness}',           [BusinessProfileController::class, 'update']);
         Route::post('profile/logo',     [BusinessProfileController::class, 'uploadLogo']);
 
         // ── Missions ───────────────────────────────
         Route::get('missions',              [BusinessMissionController::class, 'index']);
         Route::post('missions',             [BusinessMissionController::class, 'store']);
-        Route::get('missions/{id}',         [BusinessMissionController::class, 'show']);
+        Route::get('missions/{id}/{idBusiness}',         [BusinessMissionController::class, 'show']);
         Route::put('missions/{id}',         [BusinessMissionController::class, 'update']);
         Route::delete('missions/{id}',      [BusinessMissionController::class, 'destroy']);
         Route::post('missions/{id}/publier', [BusinessMissionController::class, 'publier']);
@@ -154,7 +154,7 @@ Route::prefix('internal/terra/v1')->group(function () {
         Route::get('missions/{id}/statistiques', [BusinessMissionController::class, 'statistiques']);
 
         // ── Formulaires ────────────────────────────
-        Route::get('missions/{id}/formulaires',           [BusinessFormulaireController::class, 'index']);
+        Route::get('missions/{id}/formulaires/{idBusiness}',           [BusinessFormulaireController::class, 'index']);
         Route::post('missions/{id}/formulaires',          [BusinessFormulaireController::class, 'store']);
         Route::put('missions/{id}/formulaires/{fid}',     [BusinessFormulaireController::class, 'update']);
         Route::delete('missions/{id}/formulaires/{fid}',  [BusinessFormulaireController::class, 'destroy']);

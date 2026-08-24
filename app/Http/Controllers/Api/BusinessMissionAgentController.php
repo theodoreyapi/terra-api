@@ -30,6 +30,7 @@ class BusinessMissionAgentController extends Controller
      *
      * @urlParam id string required ID mission
      * @queryParam statut string Filtrer par statut (invite, accepte, refuse, actif)
+     * @queryParam business_id
      *
      * @response 200 {
      *   "success": true,
@@ -54,8 +55,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function index(Request $request, $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $query = DB::table('mission_agents as ma')
             ->join('agents as a', 'ma.agent_id', '=', 'a.id_agent')
@@ -107,6 +107,7 @@ class BusinessMissionAgentController extends Controller
      *
      * @urlParam id string required ID mission
      * @urlParam aid string required ID agent
+     * @queryParam business_id
      *
      * @response 200 {
      *   "success": true,
@@ -131,8 +132,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function show(Request $request, $id, $aid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $agent = DB::table('mission_agents as ma')
             ->join('agents as a', 'ma.agent_id', '=', 'a.id_agent')
@@ -191,6 +191,7 @@ class BusinessMissionAgentController extends Controller
      * @bodyParam agent_ids.* string UUID agent
      * @bodyParam remuneration number Montant par agent
      * @bodyParam objectif_agent integer Objectif par agent
+     * @bodyParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -199,8 +200,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function inviter(Request $request, $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $validated = $request->validate([
             'agent_ids'     => 'required|array|min:1',
@@ -254,6 +254,8 @@ class BusinessMissionAgentController extends Controller
      * @urlParam id string required ID mission
      * @urlParam aid string required ID agent
      *
+     * @queryParam business_id
+     *
      * @response 200 {
      *   "success": true,
      *   "message": "Agent retiré de la mission"
@@ -266,8 +268,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function retirer(Request $request, $id, $aid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $rows = DB::table('mission_agents')
             ->where('mission_id', $id)
@@ -295,6 +296,7 @@ class BusinessMissionAgentController extends Controller
      *
      * @bodyParam objectif_agent integer required Objectif de l’agent
      * @bodyParam remuneration number Rémunération
+     * @bodyParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -307,8 +309,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function objectif(Request $request, $id, $aid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $validated = $request->validate([
             'objectif_agent' => 'required|integer|min:1',
@@ -352,6 +353,8 @@ class BusinessMissionAgentController extends Controller
      * @urlParam id string required ID mission
      * @urlParam aid string required ID agent
      *
+     * @queryParam business_id
+     *
      * @response 200 {
      *   "success": true,
      *   "data": {
@@ -373,8 +376,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function statistiques(Request $request, $id, $aid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $missionAgent = DB::table('mission_agents')
             ->where('mission_id', $id)
@@ -428,6 +430,8 @@ class BusinessMissionAgentController extends Controller
      * @urlParam id string required ID mission
      * @urlParam aid string required ID agent
      *
+     * @queryParam business_id
+     *
      * @response 200 {
      *   "success": true,
      *   "data": {
@@ -444,8 +448,7 @@ class BusinessMissionAgentController extends Controller
      */
     public function reponses(Request $request, $id, $aid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $reponses = DB::table('reponses as r')
             ->leftJoin('formulaires as f', 'r.formulaire_id', '=', 'f.id_formulaire')

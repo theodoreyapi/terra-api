@@ -23,7 +23,7 @@ class BusinessFormulaireController extends Controller
         return $mission;
     }
 
-    // GET /api/business/missions/{id}/formulaires
+    // GET /api/business/missions/{id}/formulaires/{idBusiness}
     /**
      * Liste des formulaires d’une mission
      *
@@ -32,6 +32,7 @@ class BusinessFormulaireController extends Controller
      * @authenticated
      *
      * @urlParam id string required ID de la mission
+     * @urlParam id string required ID du business
      *
      * @response 200 {
      *   "success": true,
@@ -59,10 +60,9 @@ class BusinessFormulaireController extends Controller
      *   "message": "Mission introuvable"
      * }
      */
-    public function index(Request $request, $id)
+    public function index($id, $idBusiness)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $idBusiness);
 
         $formulaires = DB::table('formulaires')->where('mission_id', $id)->orderBy('ordre')->get();
 
@@ -107,8 +107,7 @@ class BusinessFormulaireController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $validated = $request->validate([
             'nom'   => 'required|string|max:255',
@@ -169,8 +168,7 @@ class BusinessFormulaireController extends Controller
      */
     public function update(Request $request, $id, $fid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $formulaire = DB::table('formulaires')
             ->where('id_formulaire', $fid)
@@ -196,7 +194,7 @@ class BusinessFormulaireController extends Controller
         ]);
     }
 
-    // DELETE /api/business/missions/{id}/formulaires/{fid}
+    // DELETE /api/business/missions/{id}/formulaires/{fid}?idbusiness={idbusiness}
     /**
      * Supprimer un formulaire
      *
@@ -206,6 +204,7 @@ class BusinessFormulaireController extends Controller
      *
      * @urlParam id string required ID mission
      * @urlParam fid string required ID formulaire
+     * @urlParam fid string required ID business (Ex: /api/business/missions/{id}/formulaires/{fid}?idbusiness={idbusiness})
      *
      * @response 200 {
      *   "success": true,
@@ -219,8 +218,7 @@ class BusinessFormulaireController extends Controller
      */
     public function destroy(Request $request, $id, $fid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->idbusiness);
 
         $rows = DB::table('formulaires')
             ->where('id_formulaire', $fid)

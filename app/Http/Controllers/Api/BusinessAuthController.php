@@ -348,13 +348,15 @@ class BusinessAuthController extends Controller
         return response()->json(['success' => true, 'message' => 'Mot de passe réinitialisé avec succès']);
     }
 
-    // GET /api/business/me
+    // GET /api/business/me/{idBusiness}
     /**
      * Profil du business connecté
      *
      * @group Business Profil
      *
      * @authenticated
+     *
+     * @urlParam idBusiness string required ID mission
      *
      * @response 200 {
      *   "success": true,
@@ -375,15 +377,13 @@ class BusinessAuthController extends Controller
      *   }
      * }
      */
-    public function me(Request $request)
+    public function me($idBusiness)
     {
-        $business = $request->attributes->get('business');
-
         $data = DB::table('business as b')
             ->leftJoin('city as c', 'b.city_id', '=', 'c.id_city')
             ->leftJoin('country as co', 'b.country_id', '=', 'co.id_country')
             ->leftJoin('secteur_activite as s', 'b.secteur_id', '=', 's.id_secteur')
-            ->where('b.id_business', $business->id_business)
+            ->where('b.id_business', $idBusiness)
             ->select(
                 'b.id_business',
                 'b.name_business',
@@ -404,13 +404,15 @@ class BusinessAuthController extends Controller
         return response()->json(['success' => true, 'data' => $data]);
     }
 
-    // PUT /api/business/me
+    // PUT /api/business/me/{idBusiness}
     /**
      * Mettre à jour le profil business
      *
      * @group Business Profil
      *
      * @authenticated
+     *
+     * @urlParam id string required ID Business
      *
      * @bodyParam name_business string Nom
      * @bodyParam prenom_business string Prénom
@@ -430,14 +432,12 @@ class BusinessAuthController extends Controller
      *   }
      * }
      */
-    public function update(Request $request)
+    public function update(Request $request, $idbusiness)
     {
-        $business = $request->attributes->get('business');
-
         $validated = $request->validate([
             'name_business'                    => 'sometimes|string|max:255',
             'prenom_business'                  => 'sometimes|string|max:255',
-            'phone_business'                   => 'sometimes|string|unique:business,phone_business,' . $business->id_business . ',id_business',
+            'phone_business'                   => 'sometimes|string|unique:business,phone_business',
             'localisation_entreprise_business' => 'nullable|string',
             'description_business'             => 'nullable|string',
             'city_id'                          => 'sometimes|uuid|exists:city,id_city',
@@ -446,12 +446,12 @@ class BusinessAuthController extends Controller
         ]);
 
         $validated['updated_at'] = now();
-        DB::table('business')->where('id_business', $business->id_business)->update($validated);
+        DB::table('business')->where('id_business', $idbusiness)->update($validated);
 
         return response()->json([
             'success' => true,
             'message' => 'Profil mis à jour',
-            'data'    => DB::table('business')->where('id_business', $business->id_business)->first(),
+            'data'    => DB::table('business')->where('id_business', $idbusiness)->first(),
         ]);
     }
 }

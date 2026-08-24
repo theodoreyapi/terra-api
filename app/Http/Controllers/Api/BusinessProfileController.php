@@ -9,13 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class BusinessProfileController extends Controller
 {
-    // GET /api/business/profile
+    // GET /api/business/profile/{idBusiness}
     /**
      * Profil complet du business
      *
      * @group Business Profil
      *
      * @authenticated
+     *
+     * @urlParam id string required ID Business
      *
      * @response 200 {
      *   "success": true,
@@ -46,15 +48,13 @@ class BusinessProfileController extends Controller
      *   }
      * }
      */
-    public function show(Request $request)
+    public function show($idBusiness)
     {
-        $business = $request->attributes->get('business');
-
         $data = DB::table('business as b')
             ->leftJoin('city as c', 'b.city_id', '=', 'c.id_city')
             ->leftJoin('country as co', 'b.country_id', '=', 'co.id_country')
             ->leftJoin('secteur_activite as s', 'b.secteur_id', '=', 's.id_secteur')
-            ->where('b.id_business', $business->id_business)
+            ->where('b.id_business', $idBusiness)
             ->select(
                 'b.id_business',
                 'b.name_business',
@@ -77,13 +77,13 @@ class BusinessProfileController extends Controller
             ->first();
 
         // Stats rapides
-        $data->nb_missions      = DB::table('missions')->where('created_by', $business->id_business)->count();
-        $data->missions_actives = DB::table('missions')->where('created_by', $business->id_business)->where('statut', 'actif')->count();
+        $data->nb_missions      = DB::table('missions')->where('created_by', $idBusiness)->count();
+        $data->missions_actives = DB::table('missions')->where('created_by', $idBusiness)->where('statut', 'actif')->count();
 
         return response()->json(['success' => true, 'data' => $data]);
     }
 
-    // PUT /api/business/profile
+    // PUT /api/business/profile/{idBusiness}
     /**
      * Mettre à jour le profil business
      *
@@ -110,14 +110,12 @@ class BusinessProfileController extends Controller
      *   }
      * }
      */
-    public function update(Request $request)
+    public function update(Request $request, $idBusiness)
     {
-        $business = $request->attributes->get('business');
-
         $validated = $request->validate([
             'name_business'                    => 'sometimes|string|max:255',
             'prenom_business'                  => 'sometimes|string|max:255',
-            'phone_business'                   => 'sometimes|string|unique:business,phone_business,' . $business->id_business . ',id_business',
+            'phone_business'                   => 'sometimes|string|unique:business,phone_business',
             'localisation_entreprise_business' => 'nullable|string',
             'description_business'             => 'nullable|string',
             'city_id'                          => 'sometimes|uuid|exists:city,id_city',
@@ -126,12 +124,12 @@ class BusinessProfileController extends Controller
         ]);
 
         $validated['updated_at'] = now();
-        DB::table('business')->where('id_business', $business->id_business)->update($validated);
+        DB::table('business')->where('id_business', $idBusiness)->update($validated);
 
         return response()->json([
             'success' => true,
             'message' => 'Profil mis à jour',
-            'data'    => DB::table('business')->where('id_business', $business->id_business)->first(),
+            'data'    => DB::table('business')->where('id_business', $idBusiness)->first(),
         ]);
     }
 
@@ -144,6 +142,7 @@ class BusinessProfileController extends Controller
      * @authenticated
      *
      * @bodyParam logo file required Image (jpeg, png, jpg, svg, webp, max 2MB)
+     * @bodyParam business_id id string UUID required ID business
      *
      * @response 200 {
      *   "success": true,
@@ -160,12 +159,11 @@ class BusinessProfileController extends Controller
      */
     public function uploadLogo(Request $request)
     {
-        $business = $request->attributes->get('business');
         $request->validate(['logo' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:2048']);
 
         $path = $request->file('logo')->store('business/logos', 'public');
 
-        DB::table('business')->where('id_business', $business->id_business)->update([
+        DB::table('business')->where('id_business', $request->business_id)->update([
             'logo_business' => $path,
             'updated_at'    => now(),
         ]);

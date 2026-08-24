@@ -34,6 +34,8 @@ class BusinessPlanController extends Controller
      *
      * @urlParam id string required ID de la mission. Example: 8f3a-uuid
      *
+     * @queryParam business_id
+     *
      * @response 200 {
      *   "success": true,
      *   "data": [
@@ -48,8 +50,7 @@ class BusinessPlanController extends Controller
      */
     public function index(Request $request, string $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $plans = DB::table('plans')
             ->where('mission_id', $id)
@@ -73,6 +74,7 @@ class BusinessPlanController extends Controller
      * @bodyParam montant number required Montant du plan. Example: 10000
      * @bodyParam duree integer required Durée. Example: 30
      * @bodyParam unite_duree string required Unité de durée. Example: jours
+     * @bodyParam business_id string
      *
      * @response 201 {
      *   "success": true,
@@ -87,8 +89,7 @@ class BusinessPlanController extends Controller
      */
     public function store(Request $request, string $id)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $validated = $request->validate([
             'montant'     => 'required|numeric|min:0',
@@ -130,6 +131,7 @@ class BusinessPlanController extends Controller
      * @bodyParam montant number Montant du plan. Example: 15000
      * @bodyParam duree integer Durée. Example: 60
      * @bodyParam unite_duree string Unité de durée. Example: mois
+     * @bodyParam business_id string
      *
      * @response 200 {
      *   "success": true,
@@ -138,8 +140,7 @@ class BusinessPlanController extends Controller
      */
     public function update(Request $request, string $id, string $pid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $plan = DB::table('plans')
             ->where('id_plan', $pid)
@@ -178,6 +179,8 @@ class BusinessPlanController extends Controller
      * @urlParam id string required ID mission
      * @urlParam pid string required ID plan
      *
+     * @bodyParam pid string required ID plan
+     *
      * @response 200 {
      *   "success": true,
      *   "message": "Plan supprimé"
@@ -190,8 +193,7 @@ class BusinessPlanController extends Controller
      */
     public function destroy(Request $request, string $id, string $pid)
     {
-        $business = $request->attributes->get('business');
-        $this->getMissionOrFail($id, $business->id_business);
+        $this->getMissionOrFail($id, $request->business_id);
 
         $rows = DB::table('plans')
             ->where('id_plan', $pid)

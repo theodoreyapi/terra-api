@@ -33,13 +33,13 @@ class StatistiqueController extends Controller
     public function dashboard(): JsonResponse
     {
         $stats = [
-            'missions_total' => Mission::count(),
-            'missions_actives' => Mission::where('statut', 'actif')->count(),
-            'reponses_total' => Reponse::count(),
-            'reponses_aujourd_hui' => Reponse::whereDate('created_at', today())->count(),
-            'agents_total' => User::where('role', 'agent')->count(),
-            'missions_recentes' => Mission::latest()->take(5)->get(),
-            'performance_mensuelle' => Reponse::selectRaw('MONTH(created_at) as mois, COUNT(*) as total')
+            'missions_total' => DB::table('missions')->count(),
+            'missions_actives' => DB::table('missions')->where('statut', 'actif')->count(),
+            'reponses_total' => DB::table('reponses')->count(),
+            'reponses_aujourd_hui' => DB::table('reponses')->whereDate('created_at', today())->count(),
+            'agents_total' => DB::table('agents')->count(),
+            'missions_recentes' => DB::table('missions')->latest()->take(5)->get(),
+            'performance_mensuelle' => DB::table('reponses')->selectRaw('MONTH(created_at) as mois, COUNT(*) as total')
                 ->whereYear('created_at', now()->year)
                 ->groupBy('mois')
                 ->get(),
@@ -72,7 +72,7 @@ class StatistiqueController extends Controller
      */
     public function missionStats(string $missionId): JsonResponse
     {
-        $mission = Mission::findOrFail($missionId);
+        $mission = DB::table('missions')->findOrFail($missionId);
 
         $stats = [
             'mission' => $mission,
@@ -116,16 +116,16 @@ class StatistiqueController extends Controller
      */
     public function agentStats(string $agentId): JsonResponse
     {
-        $agent = User::findOrFail($agentId);
+        $agent = DB::table('agents')->findOrFail($agentId);
 
         $stats = [
             'agent' => $agent,
-            'reponses_total' => Reponse::where('agent_id', $agentId)->count(),
-            'reponses_validees' => Reponse::where('agent_id', $agentId)
+            'reponses_total' => DB::table('reponses')->where('agent_id', $agentId)->count(),
+            'reponses_validees' => DB::table('reponses')->where('agent_id', $agentId)
                 ->where('statut', 'valide')->count(),
-            'missions_actives' => Reponse::where('agent_id', $agentId)
+            'missions_actives' => DB::table('reponses')->where('agent_id', $agentId)
                 ->distinct('mission_id')->count('mission_id'),
-            'performance_7_jours' => Reponse::where('agent_id', $agentId)
+            'performance_7_jours' => DB::table('reponses')->where('agent_id', $agentId)
                 ->where('created_at', '>=', now()->subDays(7))
                 ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
                 ->groupBy('date')
@@ -152,14 +152,14 @@ class StatistiqueController extends Controller
     public function performance(): JsonResponse
     {
         $performance = [
-            'missions_par_type' => Mission::select('type_mission', DB::raw('COUNT(*) as total'))
+            'missions_par_type' => DB::table('missions')->select('type_mission', DB::raw('COUNT(*) as total'))
                 ->groupBy('type_mission')
                 ->get(),
-            'reponses_par_statut' => Reponse::select('statut', DB::raw('COUNT(*) as total'))
+            'reponses_par_statut' => DB::table('reponses')->select('statut', DB::raw('COUNT(*) as total'))
                 ->groupBy('statut')
                 ->get(),
-            'taux_completion' => Mission::where('statut', 'termine')->count() /
-                max(Mission::count(), 1) * 100,
+            'taux_completion' => DB::table('missions')->where('statut', 'termine')->count() /
+                max(DB::table('missions')->count(), 1) * 100,
         ];
 
         return response()->json($performance);
